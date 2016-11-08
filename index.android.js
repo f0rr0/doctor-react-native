@@ -7,47 +7,60 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
   Text,
   View
 } from 'react-native';
+import styled from 'styled-components/native';
+import Drawer from 'react-native-drawer';
+import ActionBar from 'react-native-action-bar';
+
+const InsideDrawerView = styled(View)`
+  background-color: palevioletred;
+  flex: 1;
+`;
+
+const OutsideDrawerView = styled(View)`
+  background-color: papayawhip;
+`;
 
 export default class doctorApp extends Component {
-  render() {
+  closeControlPanel = () => {
+    this._drawer.close()
+  };
+  openControlPanel = () => {
+    this._drawer.open()
+  };
+  render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Drawer
+        ref={(ref) => this._drawer = ref}
+        tapToClose={true}
+        type="overlay"
+        openDrawerOffset={0.2}
+        panCloseMask={0.2}
+        closedDrawerOffset={-3}
+        content={<InsideDrawerView><Text>Main View</Text></InsideDrawerView>}
+        tweenHandler={(ratio) => ({
+          main: { opacity:(2-ratio)/2 }
+        })}
+        styles={{
+          drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+          main: {paddingLeft: 3},
+        }}
+      >
+        <ActionBar
+          backgroundColor={'#3B373C'}
+          leftIconName={'menu'}
+          onLeftPress={this.openControlPanel}
+          title={'Consultations'}
+          titleStyle={{
+            fontFamily: 'Cochin'
+          }}
+          onTitlePress={this.handleTitlePress}
+        />
+      </Drawer>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('doctorApp', () => doctorApp);
