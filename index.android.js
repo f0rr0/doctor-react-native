@@ -31,9 +31,6 @@ export default class doctorApp extends Component {
       selectedTab: 'new'
     }
   }
-  closeControlPanel = () => {
-    this._drawer.close()
-  };
   openControlPanel = () => {
     this._drawer.open()
   };
@@ -51,23 +48,33 @@ export default class doctorApp extends Component {
           main: { opacity:(2-ratio)/2 }
         })}
         styles={{
-          drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-          main: {paddingLeft: 3},
+          drawer: {
+            shadowColor: '#000000',
+            shadowOpacity: 0.8,
+            shadowRadius: 3
+          },
+          main: {
+            paddingLeft: 3
+          },
         }}
       >
         <ActionBar
           backgroundColor={'#042430'}
           leftIconName={'menu'}
+          leftIconStyle={{
+            tintColor: '#0bc5d8',
+            marginBottom: 6
+          }}
           onLeftPress={this.openControlPanel}
-          title={'Consultations'}
-          onTitlePress={this.handleTitlePress}
+          title={'Consultation'}
           style={{
             height: 56
           }}
           titleStyle={{
-            fontFamily: 'Roboto',
+            fontFamily: 'sans-serif-light',
             fontSize: 20,
-            marginLeft: -120
+            textAlign: 'left',
+            marginLeft: -25
           }}
         />
         <TabView
@@ -78,6 +85,8 @@ export default class doctorApp extends Component {
             backgroundColor: '#0bc5d8'
           }}
           tabBarTextStyle={{
+            paddingTop: 19,
+            paddingBottom: 19,
             fontFamily: 'Roboto',
             fontSize: 15
           }}
