@@ -61,6 +61,14 @@ export default class doctorApp extends Component {
           onLeftPress={this.openControlPanel}
           title={'Consultations'}
           onTitlePress={this.handleTitlePress}
+          style={{
+            height: 56
+          }}
+          titleStyle={{
+            fontFamily: 'Roboto',
+            fontSize: 20,
+            marginLeft: -120
+          }}
         />
         <TabView
           tabBarBackgroundColor="#042430"
@@ -68,6 +76,10 @@ export default class doctorApp extends Component {
           tabBarInactiveTextColor="#777777"
           tabBarUnderlineStyle={{
             backgroundColor: '#0bc5d8'
+          }}
+          tabBarTextStyle={{
+            fontFamily: 'Roboto',
+            fontSize: 15
           }}
         >
           <OutsideDrawerView tabLabel="NEW" />
