@@ -13,6 +13,7 @@ import {
 import styled from 'styled-components/native';
 import Drawer from 'react-native-drawer';
 import ActionBar from 'react-native-action-bar';
+import TabView from 'react-native-scrollable-tab-view';
 
 const InsideDrawerView = styled(View)`
   background-color: palevioletred;
@@ -24,6 +25,12 @@ const OutsideDrawerView = styled(View)`
 `;
 
 export default class doctorApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTab: 'new'
+    }
+  }
   closeControlPanel = () => {
     this._drawer.close()
   };
@@ -39,7 +46,7 @@ export default class doctorApp extends Component {
         openDrawerOffset={0.2}
         panCloseMask={0.2}
         closedDrawerOffset={-3}
-        content={<InsideDrawerView><Text>Main View</Text></InsideDrawerView>}
+        content={<InsideDrawerView><Text>Drawer Contents</Text></InsideDrawerView>}
         tweenHandler={(ratio) => ({
           main: { opacity:(2-ratio)/2 }
         })}
@@ -49,15 +56,24 @@ export default class doctorApp extends Component {
         }}
       >
         <ActionBar
-          backgroundColor={'#3B373C'}
+          backgroundColor={'#042430'}
           leftIconName={'menu'}
           onLeftPress={this.openControlPanel}
           title={'Consultations'}
-          titleStyle={{
-            fontFamily: 'Cochin'
-          }}
           onTitlePress={this.handleTitlePress}
         />
+        <TabView
+          tabBarBackgroundColor="#042430"
+          tabBarActiveTextColor="#FFFFFF"
+          tabBarInactiveTextColor="#777777"
+          tabBarUnderlineStyle={{
+            backgroundColor: '#0bc5d8'
+          }}
+        >
+          <OutsideDrawerView tabLabel="NEW" />
+          <OutsideDrawerView tabLabel="FOLLOW UP" />
+          <OutsideDrawerView tabLabel="ALL" />
+        </TabView>
       </Drawer>
     );
   }
