@@ -51,7 +51,7 @@ const mapToTouchableIcons = icons => icons.map(({ icon, onPress, style = {} }, i
   </TouchableOpacity>
 );
 
-export default function ActionBar(props) {
+export default function AppBar(props) {
   const leftTouchButton = mapToTouchableIcons(props.leftTouchButton);
   const rightTouchButtons = mapToTouchableIcons(props.rightTouchButtons);
   return(
@@ -77,7 +77,7 @@ export default function ActionBar(props) {
   );
 }
 
-ActionBar.propTypes = {
+AppBar.propTypes = {
   leftTouchButton: PropTypes.array.isRequired,
   rightTouchButtons: PropTypes.array,
   styles: PropTypes.object,
@@ -85,7 +85,7 @@ ActionBar.propTypes = {
   subTitle: PropTypes.string
 }
 
-ActionBar.defaultProps = {
+AppBar.defaultProps = {
   leftTouchButtons: [],
   rightTouchButtons: []
 }
