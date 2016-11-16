@@ -6,12 +6,7 @@ import {
 import styled from 'styled-components/native';
 import Drawer from './components/Drawer';
 import TabView from 'react-native-scrollable-tab-view';
-import ActionBar from './components/AppBar';
-
-const InsideDrawerView = styled(View)`
-  background-color: palevioletred;
-  flex: 1;
-`;
+import AppBar from './components/AppBar';
 
 const OutsideDrawerView = styled(View)`
   background-color: papayawhip;
@@ -32,7 +27,7 @@ export default class doctorApp extends Component {
       <Drawer
         ref={(ref) => this._drawer = ref}
       >
-        <ActionBar
+        <AppBar
           title="Consultations"
           leftTouchButton={[{
             icon: require('./assets/drawable-xxhdpi/nav_icon.png'),
@@ -42,16 +37,16 @@ export default class doctorApp extends Component {
               width: 16,
             }
           }]}
-          rightTouchButtons={[
-            {
-              icon: require('./assets/drawable-xxhdpi/flag_icon.png'),
-              onPress: this.openDrawer,
-              style: {
-                height: 18,
-                width: 14
-              }
-            }
-          ]}
+          // rightTouchButtons={[
+          //   {
+          //     icon: require('./assets/drawable-xxhdpi/flag_icon.png'),
+          //     onPress: this.openDrawer,
+          //     style: {
+          //       height: 18,
+          //       width: 14
+          //     }
+          //   }
+          // ]}
         />
         <TabView
           tabBarBackgroundColor="#042430"

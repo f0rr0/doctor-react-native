@@ -54,13 +54,10 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: 16,
-    color: colors.white,
+    color: colors.black,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
     fontSize: 14,
     lineHeight: 21
-  },
-  phoneNumber: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'sans-serif-light'
   },
   navigationContainer: {
     flexDirection: 'column',
@@ -71,18 +68,24 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: 'center'
   },
-  blackText: {
-    color: colors.black
-  },
-  boldText: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium'
-  },
   divider: {
     height: 1,
     backgroundColor: colors.grey
   },
+  whiteText: {
+    color: colors.white
+  },
   darkGreyText: {
     color: colors.darkGrey
+  },
+  turquoiseText: {
+    color: colors.turquoise
+  },
+  boldText: {
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium'
+  },
+  lightText: {
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'sans-serif-light'
   }
 })
 
@@ -98,7 +101,7 @@ const Touchable = (props) => {
   }
   return (
     <TouchableNativeFeedback
-      background={TouchableNativeFeedback.Ripple(colors.grey, false)}
+      background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
     >
       <View style={styles.button}>
         {props.children}
@@ -124,11 +127,11 @@ export default function DrawerNavigationView(props) {
           source={props.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
           style={styles.profilePic}
         />
-        <Text style={styles.text}>
+        <Text style={[styles.text, styles.whiteText]}>
           Dr. Zane Symonds
         </Text>
         <Text style={[
-          styles.text, styles.phoneNumber
+          styles.text, styles.lightText, styles.whiteText
         ]}>
           +91 999999999
         </Text>
@@ -140,13 +143,13 @@ export default function DrawerNavigationView(props) {
           </Text>
         </View>
         <Touchable>
-          <Text style={[styles.text, styles.blackText, styles.boldText]}>
-            General Physician
+          <Text style={[styles.text, styles.turquoiseText, styles.boldText]}>
+            Skin Specialist
           </Text>
         </Touchable>
         <Touchable>
           <Text style={[styles.text, styles.blackText, styles.boldText]}>
-            Heart Specialist
+            General Physician
           </Text>
         </Touchable>
         <View style={styles.divider} />
