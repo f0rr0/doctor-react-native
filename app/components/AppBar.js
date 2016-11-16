@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   title: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif-medium',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
     fontSize: 20,
     color: colors.white
   },
