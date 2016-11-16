@@ -12,7 +12,7 @@ import colors from '../utils/colors';
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.gunmetal,
     alignItems: 'center',
     flexDirection: 'row'
   },
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif-medium',
     fontSize: 20,
-    color: colors.text
+    color: colors.white
   },
   subTitle: {
     fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'sans-serif-light',
     fontSize: 14,
-    color: colors.text
+    color: colors.white
   },
   icon: {
     resizeMode: 'contain',
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
 
 const mapToTouchableIcons = icons => icons.map(({ icon, onPress, style = {} }, index) =>
   <TouchableOpacity
+    activeOpacity={1}
     onPress={onPress}
     key={index}
   >

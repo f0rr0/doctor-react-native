@@ -4,7 +4,7 @@ import {
   View
 } from 'react-native';
 import styled from 'styled-components/native';
-import Drawer from 'react-native-drawer';
+import Drawer from './components/Drawer';
 import TabView from 'react-native-scrollable-tab-view';
 import ActionBar from './components/AppBar';
 
@@ -24,42 +24,19 @@ export default class doctorApp extends Component {
       selectedTab: 'new'
     }
   }
-  openControlPanel = () => {
-    console.log('touch');
+  openDrawer = () => {
     this._drawer.open();
   };
   render () {
     return (
       <Drawer
         ref={(ref) => this._drawer = ref}
-        tapToClose={true}
-        type="overlay"
-        elevation={10}
-        openDrawerOffset={0.2}
-        panCloseMask={0.2}
-        closedDrawerOffset={-3}
-        content={<InsideDrawerView><Text>Drawer Contents</Text></InsideDrawerView>}
-        tweenHandler={(ratio) => ({
-          main: {
-            opacity: (2 - ratio) / 2
-          }
-        })}
-        styles={{
-          drawer: {
-            shadowColor: '#000000',
-            shadowOpacity: 0.8,
-            shadowRadius: 3
-          },
-          main: {
-            paddingLeft: 3
-          },
-        }}
       >
         <ActionBar
           title="Consultations"
           leftTouchButton={[{
             icon: require('./assets/drawable-xxhdpi/nav_icon.png'),
-            onPress: this.openControlPanel,
+            onPress: this.openDrawer,
             style: {
               height: 12,
               width: 16,
@@ -68,7 +45,7 @@ export default class doctorApp extends Component {
           rightTouchButtons={[
             {
               icon: require('./assets/drawable-xxhdpi/flag_icon.png'),
-              onPress: this.openControlPanel,
+              onPress: this.openDrawer,
               style: {
                 height: 18,
                 width: 14
