@@ -12,6 +12,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
+  Linking,
   Platform
 } from 'react-native';
 import colors from 'colors';
@@ -123,6 +124,17 @@ const mapPropsToButtons = ({ text, onPress }, index) =>
     <Text style={styles.text}>{text}</Text>
   </Touchable>;
 
+const handleContact = (dispatch, user) => () => {
+  const url = `mailto:contact@1mgdoctors.com?subject=1mgDoctors ${Platform.OS}: Query ${user.name}`;
+  Linking.canOpenURL(url).then(supported => {
+    if (!supported) {
+      dispatch(actions.GO_TO_ROUTE('contact'));
+    } else {
+      Linking.openURL(url);
+    }
+  });
+};
+
 function DrawerNavigationView({ user, dispatch }) {
   return (
     <View style={styles.container}>
@@ -191,7 +203,7 @@ function DrawerNavigationView({ user, dispatch }) {
             About Us
           </Text>
         </Touchable>
-        <Touchable>
+        <Touchable onPress={handleContact(dispatch, user)}>
           <Text style={styles.text}>
             Contact Us
           </Text>
