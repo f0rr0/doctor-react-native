@@ -15,6 +15,8 @@ import {
   Platform
 } from 'react-native';
 import colors from 'colors';
+import { connect } from 'react-redux';
+import actions from 'actions';
 
 // {
 //   "specialities": [
@@ -91,27 +93,27 @@ const styles = StyleSheet.create({
   }
 })
 
-const Touchable = (props) => {
+const Touchable = ({ onPress, children }) => {
   if (Platform.OS === 'ios') {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.button}>
-          {props.children}
+          {children}
         </View>
       </TouchableOpacity>
     );
   }
   return (
     <TouchableNativeFeedback
+      onPress={onPress}
       background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
     >
       <View style={styles.button}>
-        {props.children}
+        {children}
       </View>
     </TouchableNativeFeedback>
   )
 }
-
 
 const mapPropsToButtons = ({ text, onPress }, index) =>
   <Touchable
@@ -121,12 +123,12 @@ const mapPropsToButtons = ({ text, onPress }, index) =>
     <Text style={styles.text}>{text}</Text>
   </Touchable>;
 
-export default function DrawerNavigationView(props) {
+function DrawerNavigationView({ user, dispatch }) {
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <Image
-          source={props.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
+          source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
           style={styles.profilePic}
         />
         <Text
@@ -134,14 +136,14 @@ export default function DrawerNavigationView(props) {
             styles.text, styles.boldText, styles.whiteText
           ]}
         >
-          Dr. Zane Symonds
+          {user.name}
         </Text>
         <Text
           style={[
             styles.text, styles.whiteText
           ]}
         >
-          +91 999999999
+          {user.phone_number}
         </Text>
       </View>
       <ScrollView contentContainerStyle={styles.navigationContainer}>
@@ -184,7 +186,7 @@ export default function DrawerNavigationView(props) {
           </Text>
         </Touchable>
         <View style={styles.divider} />
-        <Touchable>
+        <Touchable onPress={() => dispatch(actions.GO_TO_ROUTE('about'))}>
           <Text style={styles.text}>
             About Us
           </Text>
@@ -204,3 +206,5 @@ export default function DrawerNavigationView(props) {
     </View>
   );
 }
+
+export default connect(({ user }) => ({ user }))(DrawerNavigationView);

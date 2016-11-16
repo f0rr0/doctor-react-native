@@ -12,12 +12,12 @@ function genericErrorHandler({ action, error }) {
 
 export default [
   {
-    action: actions.GO_BACK,
+    action: actions.GO_BACK.type,
     effect: goBack,
     error: genericErrorHandler
   },
   {
-    action: actions.GO_TO_ROUTE,
+    action: actions.GO_TO_ROUTE().type,
     effect: goToRoute,
     error: genericErrorHandler
   }

@@ -88,9 +88,9 @@ AppBar.propTypes = {
   styles: PropTypes.object,
   title: PropTypes.string,
   subTitle: PropTypes.string
-}
+};
 
 AppBar.defaultProps = {
   leftTouchButtons: [],
   rightTouchButtons: []
-}
+};

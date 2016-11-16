@@ -26,36 +26,26 @@ export default class Home extends Component {
         <AppBar
           title="Consultations"
           leftTouchButton={[{
-           icon: require('../assets/drawable-xxhdpi/nav_icon.png'),
-           onPress: this.openDrawer,
-           style: {
+            icon: require('../assets/drawable-xxhdpi/nav_icon.png'),
+            onPress: this.openDrawer,
+            style: {
              height: 12,
-             width: 16,
-           }
+             width: 16
+            }
           }]}
-         // rightTouchButtons={[
-         //   {
-         //     icon: require('./assets/drawable-xxhdpi/flag_icon.png'),
-         //     onPress: this.openDrawer,
-         //     style: {
-         //       height: 18,
-         //       width: 14
-         //     }
-         //   }
-         // ]}
         />
         <TabView
           tabBarBackgroundColor="#042430"
           tabBarActiveTextColor="#FFFFFF"
           tabBarInactiveTextColor="#777777"
           tabBarUnderlineStyle={{
-           backgroundColor: '#0bc5d8',
-           height: 3
+            backgroundColor: '#0bc5d8',
+            height: 3
           }}
           tabBarTextStyle={{
-           paddingTop: 16,
-           // fontFamily: 'Roboto',
-           fontSize: 15
+            paddingTop: 16,
+            // fontFamily: 'Roboto',
+            fontSize: 15
           }}
         >
           <View tabLabel="NEW" />
