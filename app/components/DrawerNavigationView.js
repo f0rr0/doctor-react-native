@@ -1,7 +1,12 @@
+/**
+ * @providesModule DrawerNavigationView
+ */
+
 import React, { PropTypes } from 'react';
 import {
   Text,
   View,
+  ScrollView,
   Image,
   StatusBar,
   StyleSheet,
@@ -9,7 +14,7 @@ import {
   TouchableNativeFeedback,
   Platform
 } from 'react-native';
-import colors from '../utils/colors';
+import colors from 'colors';
 
 // {
 //   "specialities": [
@@ -83,9 +88,6 @@ const styles = StyleSheet.create({
   },
   boldText: {
     fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium'
-  },
-  lightText: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'sans-serif-light'
   }
 })
 
@@ -127,60 +129,78 @@ export default function DrawerNavigationView(props) {
           source={props.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
           style={styles.profilePic}
         />
-        <Text style={[styles.text, styles.whiteText]}>
+        <Text
+          style={[
+            styles.text, styles.boldText, styles.whiteText
+          ]}
+        >
           Dr. Zane Symonds
         </Text>
-        <Text style={[
-          styles.text, styles.lightText, styles.whiteText
-        ]}>
+        <Text
+          style={[
+            styles.text, styles.whiteText
+          ]}
+        >
           +91 999999999
         </Text>
       </View>
-      <View style={styles.navigationContainer}>
+      <ScrollView contentContainerStyle={styles.navigationContainer}>
         <View style={styles.button}>
-          <Text style={[styles.text, styles.darkGreyText]}>
+          <Text
+            style={[
+              styles.text, styles.darkGreyText
+            ]}
+          >
             SPECIALITY
           </Text>
         </View>
         <Touchable>
-          <Text style={[styles.text, styles.turquoiseText, styles.boldText]}>
+          <Text
+            style={[
+              styles.text, styles.turquoiseText, styles.boldText
+            ]}
+          >
             Skin Specialist
           </Text>
         </Touchable>
         <Touchable>
-          <Text style={[styles.text, styles.blackText, styles.boldText]}>
+          <Text
+            style={[
+              styles.text, styles.boldText
+            ]}
+          >
             General Physician
           </Text>
         </Touchable>
         <View style={styles.divider} />
         <Touchable>
-          <Text style={[styles.text, styles.blackText]}>
+          <Text style={styles.text}>
             Spam
           </Text>
         </Touchable>
         <Touchable>
-          <Text style={[styles.text, styles.blackText]}>
+          <Text style={styles.text}>
             Change Password
           </Text>
         </Touchable>
         <View style={styles.divider} />
         <Touchable>
-          <Text style={[styles.text, styles.blackText]}>
+          <Text style={styles.text}>
             About Us
           </Text>
         </Touchable>
         <Touchable>
-          <Text style={[styles.text, styles.blackText]}>
+          <Text style={styles.text}>
             Contact Us
           </Text>
         </Touchable>
         <View style={styles.divider} />
         <Touchable>
-          <Text style={[styles.text, styles.blackText]}>
+          <Text style={styles.text}>
             Signout
           </Text>
         </Touchable>
-      </View>
+      </ScrollView>
     </View>
   );
 }

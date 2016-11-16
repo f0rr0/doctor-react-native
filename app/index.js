@@ -1,72 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  Text,
-  View
-} from 'react-native';
-import styled from 'styled-components/native';
-import Drawer from './components/Drawer';
-import TabView from 'react-native-scrollable-tab-view';
-import AppBar from './components/AppBar';
+  NavigationContext,
+  NavigationProvider,
+  StackNavigation,
+} from '@exponent/ex-navigation';
+import { Provider } from 'react-redux';
+import router from 'router';
+import store from 'store';
 
-const OutsideDrawerView = styled(View)`
-  background-color: papayawhip;
-`;
+const navigationContext = new NavigationContext({
+  router,
+  store
+});
 
-export default class doctorApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedTab: 'new'
-    }
-  }
-  openDrawer = () => {
-    this._drawer.open();
-  };
-  render () {
-    return (
-      <Drawer
-        ref={(ref) => this._drawer = ref}
-      >
-        <AppBar
-          title="Consultations"
-          leftTouchButton={[{
-            icon: require('./assets/drawable-xxhdpi/nav_icon.png'),
-            onPress: this.openDrawer,
-            style: {
-              height: 12,
-              width: 16,
-            }
-          }]}
-          // rightTouchButtons={[
-          //   {
-          //     icon: require('./assets/drawable-xxhdpi/flag_icon.png'),
-          //     onPress: this.openDrawer,
-          //     style: {
-          //       height: 18,
-          //       width: 14
-          //     }
-          //   }
-          // ]}
-        />
-        <TabView
-          tabBarBackgroundColor="#042430"
-          tabBarActiveTextColor="#FFFFFF"
-          tabBarInactiveTextColor="#777777"
-          tabBarUnderlineStyle={{
-            backgroundColor: '#0bc5d8',
-            height: 3
-          }}
-          tabBarTextStyle={{
-            paddingTop: 16,
-            // fontFamily: 'Roboto',
-            fontSize: 15
-          }}
-        >
-          <OutsideDrawerView tabLabel="NEW" />
-          <OutsideDrawerView tabLabel="FOLLOW UP" />
-          <OutsideDrawerView tabLabel="ALL" />
-        </TabView>
-      </Drawer>
-    );
-  }
+export default function doctorApp() {
+  return (
+    <Provider store={store}>
+      <NavigationProvider context={navigationContext}>
+          <StackNavigation initialRoute={router.getRoute('home')} />
+      </NavigationProvider>
+    </Provider>
+  );
 }

@@ -1,3 +1,7 @@
+/**
+ * @providesModule Drawer
+ */
+
 import React, { PropTypes, Component } from 'react';
 import DrawerLayout from 'react-native-drawer-layout';
 import {
@@ -6,7 +10,7 @@ import {
   StatusBar,
   Platform
 } from 'react-native';
-import DrawerNavigationView from './DrawerNavigationView';
+import DrawerNavigationView from 'DrawerNavigationView';
 
 export default class Drawer extends Component {
   open = () => {

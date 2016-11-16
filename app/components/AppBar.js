@@ -1,3 +1,7 @@
+/**
+ * @providesModule AppBar
+ */
+
 import React, { PropTypes } from 'react';
 import {
   Image,
@@ -7,7 +11,7 @@ import {
   View,
   Platform
 } from 'react-native';
-import colors from '../utils/colors';
+import colors from 'colors';
 
 const styles = StyleSheet.create({
   container: {
