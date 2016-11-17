@@ -130,7 +130,7 @@ class Login extends Component {
               </TouchableOpacity>
               <View style={styles.passwordActionsRow}>
                 <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity>
+                  <TouchableOpacity activeOpacity={1}>
                     <Text style={[styles.text, styles.passwordActionText ]}>
                       Create New Password
                     </Text>
@@ -138,7 +138,7 @@ class Login extends Component {
                 </View>
                 <View style={styles.verticalDivider} />
                 <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity>
+                  <TouchableOpacity activeOpacity={1}>
                     <Text style={[styles.text, styles.passwordActionText ]}>
                       Forgot Password?
                     </Text>
@@ -154,7 +154,7 @@ class Login extends Component {
 
 Login.route = {
   styles: {
-    ...NavigationStyles.SlideHorizontal,
+    ...NavigationStyles.SlideVertical,
     gestures: null
   }
 };
