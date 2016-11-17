@@ -25,7 +25,7 @@ export default class Home extends Component {
       <Drawer ref={(ref) => { this._drawer = ref; }}>
         <AppBar
           title="Consultations"
-          leftTouchButton={[{
+          leftTouchButtons={[{
             icon: require('../assets/drawable-xxhdpi/nav_icon.png'),
             onPress: this.openDrawer,
             style: {

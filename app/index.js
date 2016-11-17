@@ -17,7 +17,7 @@ export default function doctorApp() {
   return (
     <Provider store={store}>
       <NavigationProvider context={navigationContext}>
-          <StackNavigation initialRoute={router.getRoute('home')} />
+          <StackNavigation initialRoute={router.getRoute('login')} />
       </NavigationProvider>
     </Provider>
   );

@@ -57,12 +57,12 @@ const mapToTouchableIcons = icons => icons.map(({ icon, onPress, style = {} }, i
 );
 
 export default function AppBar(props) {
-  const leftTouchButton = mapToTouchableIcons(props.leftTouchButton);
+  const leftTouchButtons = mapToTouchableIcons(props.leftTouchButtons);
   const rightTouchButtons = mapToTouchableIcons(props.rightTouchButtons);
   return(
     <View style={styles.container}>
       <View style={styles.leftButtonsContainer}>
-        {leftTouchButton}
+        {leftTouchButtons}
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>
@@ -83,7 +83,7 @@ export default function AppBar(props) {
 }
 
 AppBar.propTypes = {
-  leftTouchButton: PropTypes.array.isRequired,
+  leftTouchButtons: PropTypes.array,
   rightTouchButtons: PropTypes.array,
   styles: PropTypes.object,
   title: PropTypes.string,
