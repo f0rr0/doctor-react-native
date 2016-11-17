@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   loginContainer: {
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 54
+    marginTop: 30
   },
   text: {
     fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
@@ -46,18 +46,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21
   },
-  forgotMessageContainer: {
-    marginTop: 11,
-    alignItems: 'flex-end'
-  },
-  forgotMessage: {
-    width: 100,
-    fontSize: 12,
-    textAlign: 'right',
-    color: colors.turquoise
-  },
   loginButton: {
-    marginTop: 33,
+    marginTop: 25,
     backgroundColor: colors.turquoise,
     alignItems: 'center',
     justifyContent: 'center'
@@ -68,6 +58,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 16,
     marginBottom: 16
+  },
+  passwordActionsRow: {
+    flexDirection: 'row',
+    marginTop: 25
+  },
+  passwordActionsContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  passwordActionText: {
+    color: colors.turquoise,
+    fontSize: 14,
+    textAlign: 'center'
+  },
+  verticalDivider: {
+    backgroundColor: colors.turquoise,
+    width: 1,
+    height: 35
   }
 });
 
@@ -111,13 +120,6 @@ class Login extends Component {
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
               />
-              <View style={styles.forgotMessageContainer}>
-                <TouchableOpacity>
-                  <Text style={[styles.text, styles.forgotMessage ]}>
-                    forgot password?
-                  </Text>
-                </TouchableOpacity>
-              </View>
               <TouchableOpacity
                 activeOpacity={1}
                 style={styles.loginButton}
@@ -126,6 +128,23 @@ class Login extends Component {
                   LOGIN
                 </Text>
               </TouchableOpacity>
+              <View style={styles.passwordActionsRow}>
+                <View style={styles.passwordActionsContainer}>
+                  <TouchableOpacity>
+                    <Text style={[styles.text, styles.passwordActionText ]}>
+                      Create New Password
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.verticalDivider} />
+                <View style={styles.passwordActionsContainer}>
+                  <TouchableOpacity>
+                    <Text style={[styles.text, styles.passwordActionText ]}>
+                      Forgot Password?
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
         </View>
       </TouchableWithoutFeedback>
