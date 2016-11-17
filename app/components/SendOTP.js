@@ -1,5 +1,5 @@
 /**
- * @providesModule Login
+ * @providesModule SendOTP
  */
 
 import React, { Component } from 'react';
@@ -34,13 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.black
   },
-  welocomeMessage: {
-    marginBottom: 8,
-    fontSize: 24,
-    lineHeight: 36,
-    color: colors.mediumGrey
-  },
-  loginMessage: {
+  forgotMessage: {
     marginBottom: 40,
     fontSize: 14,
     lineHeight: 21
@@ -79,7 +73,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Login extends Component {
+class SendOTP extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,13 +87,20 @@ class Login extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
-          <AppBar title="Login" />
+          <AppBar
+            title="Forgot Password"
+            leftTouchButtons={[{
+              icon: require('../assets/drawable-xxhdpi/back_icon.png'),
+              onPress: () => dispatch(actions.GO_BACK),
+              style: {
+               height: 11,
+               width: 18
+              }
+            }]}
+          />
             <View style={styles.loginContainer}>
-              <Text style={[ styles.text, styles.welocomeMessage ]}>
-                Welcome back!
-              </Text>
-              <Text style={[ styles.text, styles.loginMessage ]}>
-                Login to continue to 1mg Doctors
+              <Text style={[ styles.text, styles.forgotMessage ]}>
+                Enter your phone number and we will send you instructions to reset your password
               </Text>
               <TextInput
                 autoCapitalize="none"
@@ -110,45 +111,14 @@ class Login extends Component {
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
               />
-              <TextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                label="Password"
-                secureTextEntry
-                showUnmask
-                highlightColor={colors.turquoise}
-                labelColor={colors.mediumGrey}
-                selectionColor={colors.turquoise}
-              />
               <TouchableOpacity
-                onPress={() => dispatch(actions.GO_TO_ROUTE('home'))}
                 activeOpacity={1}
                 style={styles.loginButton}
               >
                 <Text style={styles.loginText}>
-                  LOGIN
+                  SEND OTP
                 </Text>
               </TouchableOpacity>
-              <View style={styles.passwordActionsRow}>
-                <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity activeOpacity={1}>
-                    <Text style={[styles.text, styles.passwordActionText ]}>
-                      Create New Password
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.verticalDivider} />
-                <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity
-                    onPress={() => dispatch(actions.GO_TO_ROUTE('sendOTP'))}
-                    activeOpacity={1}
-                  >
-                    <Text style={[styles.text, styles.passwordActionText ]}>
-                      Forgot Password?
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
             </View>
         </View>
       </TouchableWithoutFeedback>
@@ -156,11 +126,11 @@ class Login extends Component {
   }
 }
 
-Login.route = {
+SendOTP.route = {
   styles: {
-    ...NavigationStyles.SlideVertical,
+    ...NavigationStyles.SlideHorizontal,
     gestures: null
   }
 };
 
-export default connect(null)(Login);
+export default connect(null)(SendOTP);

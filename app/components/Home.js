@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { NavigationStyles } from '@exponent/ex-navigation';
 import Drawer from 'Drawer';
 import TabView from 'react-native-scrollable-tab-view';
 import AppBar from 'AppBar';
@@ -56,3 +57,10 @@ export default class Home extends Component {
     );
   }
 }
+
+Home.route = {
+  styles: {
+    ...NavigationStyles.SlideHorizontal,
+    gestures: null
+  }
+};

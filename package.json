@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@exponent/ex-navigation": "^2.1.0",
+    "lodash-es": "^4.17.2",
+    "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react": "15.3.2",
     "react-native": "0.36.1",

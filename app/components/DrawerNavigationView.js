@@ -19,6 +19,7 @@ import colors from 'colors';
 import { connect } from 'react-redux';
 import actions from 'actions';
 
+
 // {
 //   "specialities": [
 //     {
@@ -94,8 +95,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const Touchable = ({ onPress, children }) => {
-  if (Platform.OS === 'ios') {
+const Touchable = ({ onPress = () => {}, children }) => {
+  if (Platform.OS === 'ios' || Platform.Version < 21) {
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.button}>
