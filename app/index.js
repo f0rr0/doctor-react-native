@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import {
   NavigationContext,
@@ -8,27 +8,42 @@ import {
 import { NavigationStyles } from '@exponent/ex-navigation';
 import { Provider } from 'react-redux';
 import router from 'router';
-import store from 'store';
+import configureStore from 'store';
 
-const navigationContext = new NavigationContext({
-  router,
-  store
-});
+export default class doctorApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      store: configureStore(() => this.setState({ isLoading: false })),
+    };
+  }
 
-export default function doctorApp() {
-  return (
-    <Provider store={store}>
-      <NavigationProvider context={navigationContext}>
-          <StackNavigation
-            defaultRouteConfig={{
-              styles: {
-                ...NavigationStyles.SlideHorizontal,
-                gestures: null
-              }
-            }}
-            initialRoute={router.getRoute('login')}
-          />
-      </NavigationProvider>
-    </Provider>
-  );
+  render() {
+    const { isLoading, store } = this.state;
+    console.log(isLoading, store);
+    if (isLoading) {
+      return null;
+    }
+    const navigationContext = new NavigationContext({
+      router,
+      store
+    });
+
+    return (
+      <Provider store={store}>
+        <NavigationProvider context={navigationContext}>
+            <StackNavigation
+              defaultRouteConfig={{
+                styles: {
+                  ...NavigationStyles.SlideHorizontal,
+                  gestures: null
+                }
+              }}
+              initialRoute={router.getRoute('login')}
+            />
+        </NavigationProvider>
+      </Provider>
+    );
+  }
 }

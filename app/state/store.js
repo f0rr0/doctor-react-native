@@ -2,7 +2,9 @@
  * @providesModule store
  */
 
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { AsyncStorage } from 'react-native';
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist'
 import { effectsMiddleware } from 'redux-effex';
 import { createNavigationEnabledStore, NavigationReducer } from '@exponent/ex-navigation';
 import effects from 'effects';
@@ -13,12 +15,16 @@ const createStoreWithNavigation = createNavigationEnabledStore({
   navigationStateKey: 'navigation'
 });
 
-const store = createStoreWithNavigation(
-  combineReducers({
-    navigation: NavigationReducer,
-    user: userReducer
-  }),
-  applyMiddleware(effectsMiddleware(effects))
-);
+export function configureStore(onComplete = () => {}) {
+  const store = compose(autoRehydrate())(createStoreWithNavigation)(
+    combineReducers({
+      navigation: NavigationReducer,
+      user: userReducer
+    }),
+    applyMiddleware(effectsMiddleware(effects))
+  );
+  persistStore(store, { storage: AsyncStorage }, onComplete);
+  return store;
+}
 
-export default store;
+export default configureStore;
