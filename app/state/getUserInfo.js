@@ -22,6 +22,7 @@ export default async function getUserInfo({ action, dispatch, getState }) {
       }} = json;
       dispatch(actions.SET_USER_INFO({
         ...user,
+        loggedIn: true,
         specialities,
         name,
         profile_pic,

@@ -91,6 +91,11 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(actions.CLEAR_ROUTE_STACK('login'));
+  }
+
   render() {
     const { dispatch } = this.props;
     const { phone_number, password } = this.state;

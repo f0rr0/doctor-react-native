@@ -210,7 +210,7 @@ function DrawerNavigationView({ user, dispatch }) {
           </Text>
         </Touchable>
         <View style={styles.divider} />
-        <Touchable>
+        <Touchable onPress={() => dispatch(actions.SIGN_OUT)}>
           <Text style={styles.text}>
             Signout
           </Text>

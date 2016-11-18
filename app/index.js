@@ -21,7 +21,6 @@ export default class doctorApp extends Component {
 
   render() {
     const { isLoading, store } = this.state;
-    console.log(isLoading, store);
     if (isLoading) {
       return null;
     }
@@ -29,7 +28,7 @@ export default class doctorApp extends Component {
       router,
       store
     });
-
+    const { user: { loggedIn } } = store.getState();
     return (
       <Provider store={store}>
         <NavigationProvider context={navigationContext}>
@@ -40,7 +39,7 @@ export default class doctorApp extends Component {
                   gestures: null
                 }
               }}
-              initialRoute={router.getRoute('login')}
+              initialRoute={ loggedIn ? router.getRoute('home') : router.getRoute('login') }
             />
         </NavigationProvider>
       </Provider>

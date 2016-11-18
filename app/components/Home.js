@@ -71,10 +71,3 @@ class Home extends Component {
 }
 
 export default connect(null)(Home);
-
-Home.route = {
-  styles: {
-    ...NavigationStyles.SlideHorizontal,
-    gestures: null
-  }
-};

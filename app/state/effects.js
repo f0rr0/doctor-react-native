@@ -9,6 +9,7 @@ import clearRouteStack from 'clearRouteStack';
 import showModal from 'showModal';
 import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
+import signOut from 'signOut';
 import getUserInfo from 'getUserInfo';
 
 function genericErrorHandler({ action, error }) {
@@ -44,6 +45,11 @@ export default [
   {
     action: actions.SIGN_IN().type,
     effect: signIn,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.SIGN_OUT.type,
+    effect: signOut,
     error: genericErrorHandler
   },
   {
