@@ -11,6 +11,8 @@ import {
   View,
   Platform
 } from 'react-native';
+import { connect } from 'react-redux';
+import actions from 'actions';
 import colors from 'colors';
 
 const styles = StyleSheet.create({
@@ -57,8 +59,15 @@ const mapToTouchableIcons = icons => icons.map(({ icon, onPress, style = {} }, i
   </TouchableOpacity>
 );
 
-export default function AppBar(props) {
-  const leftTouchButtons = mapToTouchableIcons(props.leftTouchButtons);
+function AppBar(props) {
+  const leftTouchButtons = Array.isArray(props.leftTouchButtons) ? mapToTouchableIcons(props.leftTouchButtons) : mapToTouchableIcons([{
+    icon: require('../assets/drawable-xxhdpi/back_icon.png'),
+    onPress: () => props.dispatch(actions.GO_BACK),
+    style: {
+     height: 11,
+     width: 18
+    }
+  }]);
   const rightTouchButtons = mapToTouchableIcons(props.rightTouchButtons);
   return(
     <View style={styles.container}>
@@ -83,6 +92,8 @@ export default function AppBar(props) {
   );
 }
 
+export default connect(null)(AppBar);
+
 AppBar.propTypes = {
   leftTouchButtons: PropTypes.array,
   rightTouchButtons: PropTypes.array,
@@ -92,6 +103,5 @@ AppBar.propTypes = {
 };
 
 AppBar.defaultProps = {
-  leftTouchButtons: [],
   rightTouchButtons: []
 };

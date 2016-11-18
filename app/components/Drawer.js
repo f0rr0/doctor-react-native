@@ -35,7 +35,7 @@ export default class Drawer extends Component {
             StatusBar.setHidden(false, 'slide');
           }
         }}
-        renderNavigationView={() => <DrawerNavigationView {...this.props} />}
+        renderNavigationView={() => <DrawerNavigationView {...this.props} close={this.close} />}
       >
         {this.props.children}
       </DrawerLayout>

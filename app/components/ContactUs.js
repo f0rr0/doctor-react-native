@@ -8,10 +8,7 @@ import {
   WebView,
   StyleSheet
 } from 'react-native';
-import { NavigationStyles } from '@exponent/ex-navigation';
-import { connect } from 'react-redux';
 import AppBar from 'AppBar';
-import actions from 'actions';
 
 const styles = StyleSheet.create({
   full: {
@@ -21,20 +18,10 @@ const styles = StyleSheet.create({
 
 const removeNavsFrom1mgWebView = 'var header = document.querySelector(".header-wrapper"); if (header) { header.parentNode.removeChild(header); } var footer = document.querySelector(".footer-wrapper"); if (footer) { footer.parentNode.removeChild(footer); }';
 
-function ContactUs({ dispatch }) {
+export default function ContactUs() {
   return (
     <View style={styles.full}>
-      <AppBar
-        title="Contact Us"
-        leftTouchButtons={[{
-          icon: require('../assets/drawable-xxhdpi/back_icon.png'),
-          onPress: () => dispatch(actions.GO_BACK),
-          style: {
-           height: 11,
-           width: 18
-          }
-        }]}
-      />
+      <AppBar title="Contact Us" />
       <WebView
         source={{
           uri: "https://www.1mgdoctors.com/contact?source=react_native_app"
@@ -45,5 +32,3 @@ function ContactUs({ dispatch }) {
     </View>
   );
 }
-
-export default connect(null)(ContactUs);

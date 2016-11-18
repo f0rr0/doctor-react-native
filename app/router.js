@@ -9,6 +9,7 @@ import SendOTP from 'SendOTP';
 import Home from 'Home';
 import AboutUs from 'AboutUs';
 import ContactUs from 'ContactUs';
+import Profile from 'Profile';
 
 export default createRouter(() => ({
   modal: () => BlockingModal,
@@ -16,5 +17,6 @@ export default createRouter(() => ({
   sendOTP: () => SendOTP,
   home: () => Home,
   about: () => AboutUs,
-  contact: () => ContactUs
+  contact: () => ContactUs,
+  profile: () => Profile
 }));

@@ -95,55 +95,94 @@ const styles = StyleSheet.create({
   }
 })
 
-const Touchable = ({ onPress = () => {}, children }) => {
-  if (Platform.OS === 'ios' || Platform.Version < 21) {
+function DrawerNavigationView({ close, user, dispatch }) {
+  const Touchable = ({ close = () => {}, onPress = () => {}, children }) => {
+    if (Platform.OS === 'ios' || Platform.Version < 21) {
+      return (
+        <TouchableOpacity onPress={() => {
+          close();
+          onPress();
+        }}>
+          <View style={styles.button}>
+            {children}
+          </View>
+        </TouchableOpacity>
+      );
+    }
     return (
-      <TouchableOpacity onPress={onPress}>
+      <TouchableNativeFeedback
+        onPress={() => {
+          close();
+          onPress();
+        }}
+        background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
+      >
         <View style={styles.button}>
           {children}
         </View>
-      </TouchableOpacity>
-    );
+      </TouchableNativeFeedback>
+    )
   }
-  return (
-    <TouchableNativeFeedback
+
+  const toButtons = ({ text, onPress }, index) =>
+    <Touchable
+      key={index}
+      close={close}
       onPress={onPress}
-      background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
     >
-      <View style={styles.button}>
-        {children}
-      </View>
-    </TouchableNativeFeedback>
-  )
-}
+      <Text style={styles.text}>{text}</Text>
+    </Touchable>;
 
-const mapPropsToButtons = ({ text, onPress }, index) =>
-  <Touchable
-    key={index}
-    onPress={onPress}
-  >
-    <Text style={styles.text}>{text}</Text>
-  </Touchable>;
+  const handleContact = (dispatch, user) => {
+    const url = `mailto:contact@1mgdoctors.com?subject=1mgDoctors ${Platform.OS}: Query ${user.name}`;
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        dispatch(actions.GO_TO_ROUTE('contact'));
+      } else {
+        Linking.openURL(url);
+      }
+    });
+  };
 
-const handleContact = (dispatch, user) => () => {
-  const url = `mailto:contact@1mgdoctors.com?subject=1mgDoctors ${Platform.OS}: Query ${user.name}`;
-  Linking.canOpenURL(url).then(supported => {
-    if (!supported) {
-      dispatch(actions.GO_TO_ROUTE('contact'));
-    } else {
-      Linking.openURL(url);
+  const itemGroupOne = [
+    {
+      text: 'Spam',
+    },
+    {
+      text: 'Change Password',
     }
-  });
-};
+  ];
 
-function DrawerNavigationView({ user, dispatch }) {
+  const itemGroupTwo = [
+    {
+      text: 'About Us',
+      onPress: () => dispatch(actions.GO_TO_ROUTE('about'))
+    },
+    {
+      text: 'Contact Us',
+      onPress: () => handleContact(dispatch, user)
+    }
+  ];
+
+  const itemGroupThree = [
+    {
+      text: 'Sign Out',
+      onPress: () => dispatch(actions.SIGN_OUT)
+    }
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
-        <Image
-          source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
-          style={styles.profilePic}
-        />
+        <TouchableOpacity onPress={() => {
+          dispatch(actions.GO_TO_ROUTE('profile'));
+          close();
+        }}>
+          <Image
+            source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
+            style={styles.profilePic}
+          />
+        </TouchableOpacity>
         <Text
           style={[
             styles.text, styles.boldText, styles.whiteText
@@ -188,33 +227,11 @@ function DrawerNavigationView({ user, dispatch }) {
           </Text>
         </Touchable>
         <View style={styles.divider} />
-        <Touchable>
-          <Text style={styles.text}>
-            Spam
-          </Text>
-        </Touchable>
-        <Touchable>
-          <Text style={styles.text}>
-            Change Password
-          </Text>
-        </Touchable>
+        { itemGroupOne.map(toButtons) }
         <View style={styles.divider} />
-        <Touchable onPress={() => dispatch(actions.GO_TO_ROUTE('about'))}>
-          <Text style={styles.text}>
-            About Us
-          </Text>
-        </Touchable>
-        <Touchable onPress={handleContact(dispatch, user)}>
-          <Text style={styles.text}>
-            Contact Us
-          </Text>
-        </Touchable>
+        { itemGroupTwo.map(toButtons) }
         <View style={styles.divider} />
-        <Touchable onPress={() => dispatch(actions.SIGN_OUT)}>
-          <Text style={styles.text}>
-            Signout
-          </Text>
-        </Touchable>
+        { itemGroupThree.map(toButtons) }
       </ScrollView>
     </View>
   );

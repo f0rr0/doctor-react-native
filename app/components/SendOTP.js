@@ -86,17 +86,7 @@ class SendOTP extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
-          <AppBar
-            title="Forgot Password"
-            leftTouchButtons={[{
-              icon: require('../assets/drawable-xxhdpi/back_icon.png'),
-              onPress: () => dispatch(actions.GO_BACK),
-              style: {
-               height: 11,
-               width: 18
-              }
-            }]}
-          />
+          <AppBar title="Forgot Password" />
             <View style={styles.loginContainer}>
               <Text style={[ styles.text, styles.forgotMessage ]}>
                 Enter your phone number and we will send you instructions to reset your password

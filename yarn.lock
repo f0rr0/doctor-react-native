@@ -4508,9 +4508,9 @@ react-native-gifted-spinner@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.0.4.tgz#32652b5a60423f14719a1c3125613299af0995f2"
 
-react-native-md-textinput-1mg@2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/react-native-md-textinput-1mg/-/react-native-md-textinput-1mg-2.0.7.tgz#34203a6a7786b77466104708afa119d0a9264f03"
+react-native-md-textinput-1mg:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-md-textinput-1mg/-/react-native-md-textinput-1mg-2.0.8.tgz#4b731e23412aee140a05e490747bbdca4d0a8c46"
 
 react-native-router-flux@^3.26.13:
   version "3.36.0"
