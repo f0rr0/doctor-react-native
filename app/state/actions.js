@@ -6,6 +6,7 @@ import { createAction } from 'redux-actions';
 
 export default {
  GO_BACK: createAction('GO_BACK')(),
+ CLEAR_ROUTE_STACK: (route) => createAction('CLEAR_ROUTE_STACK')({ route }),
  GO_TO_ROUTE: (route) => createAction('GO_TO_ROUTE')({ route }),
  SHOW_MODAL: (text) => createAction('SHOW_MODAL')({ text }),
  SHOW_LOCAL_ALERT: (message) => createAction('SHOW_LOCAL_ALERT')({ message }),

@@ -3,18 +3,26 @@
  */
 
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, StatusBar, View } from 'react-native';
 import { NavigationStyles } from '@exponent/ex-navigation';
+import { connect } from 'react-redux';
+import actions from 'actions';
 import Drawer from 'Drawer';
 import TabView from 'react-native-scrollable-tab-view';
 import AppBar from 'AppBar';
+import colors from 'colors';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'new'
     }
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(actions.CLEAR_ROUTE_STACK('home'));
   }
 
   openDrawer = () => {
@@ -61,6 +69,8 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect(null)(Home);
 
 Home.route = {
   styles: {

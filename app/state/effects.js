@@ -5,6 +5,7 @@
 import actions from 'actions';
 import goBack from 'goBack';
 import goToRoute from 'goToRoute';
+import clearRouteStack from 'clearRouteStack';
 import showModal from 'showModal';
 import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
@@ -23,6 +24,11 @@ export default [
   {
     action: actions.GO_TO_ROUTE().type,
     effect: goToRoute,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.CLEAR_ROUTE_STACK().type,
+    effect: clearRouteStack,
     error: genericErrorHandler
   },
   {
