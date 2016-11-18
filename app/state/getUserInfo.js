@@ -29,10 +29,14 @@ export default async function getUserInfo({ action, dispatch, getState }) {
       }));
       dispatch(actions.GO_TO_ROUTE('home'));
     } else {
-      dispatch(actions.GO_BACK);
+      const { error } = json;
+      dispatch(actions.SHOW_LOCAL_ALERT(error));
     }
-  } catch (e) {
-    console.error('error', e);
-    dispatch(actions.GO_BACK);
+  } catch ({ message }) {
+    if (message === 'Network request failed') {
+      dispatch(actions.SHOW_LOCAL_ALERT('Looks like you are not connected to the internet. Please check the settings and try again.'));
+    } else {
+      dispatch(actions.SHOW_LOCAL_ALERT(message));
+    }
   }
 }

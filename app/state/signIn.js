@@ -13,7 +13,6 @@ export default async function signIn({ action, dispatch, nextDispatchAsync, getS
   try {
     const response = await fetch(request);
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       dispatch(actions.SHOW_MODAL('Signing in...'));
       const { doctor_guid, phone_access_token } = json;
@@ -24,10 +23,14 @@ export default async function signIn({ action, dispatch, nextDispatchAsync, getS
         phone_access_token
       }));
     } else {
-      dispatch(actions.GO_BACK);
+      const { error } = json;
+      dispatch(actions.SHOW_LOCAL_ALERT(error));
     }
-  } catch (e) {
-    console.error('error', e);
-    dispatch(actions.GO_BACK);
+  } catch ({ message }) {
+    if (message === 'Network request failed') {
+      dispatch(actions.SHOW_LOCAL_ALERT('Looks like you are not connected to the internet. Please check the settings and try again.'));
+    } else {
+      dispatch(actions.SHOW_LOCAL_ALERT(message));
+    }
   }
 }

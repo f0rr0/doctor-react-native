@@ -6,6 +6,7 @@ import actions from 'actions';
 import goBack from 'goBack';
 import goToRoute from 'goToRoute';
 import showModal from 'showModal';
+import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
 import getUserInfo from 'getUserInfo';
 
@@ -27,6 +28,11 @@ export default [
   {
     action: actions.SHOW_MODAL().type,
     effect: showModal,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.SHOW_LOCAL_ALERT().type,
+    effect: showLocalAlert,
     error: genericErrorHandler
   },
   {
