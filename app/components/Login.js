@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import {
+  StatusBar,
   View,
   Text,
   Image,
@@ -96,6 +97,10 @@ class Login extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
+          <StatusBar
+            backgroundColor={colors.gunmetal}
+            barStyle="light-content"
+          />
           <AppBar title="Login" />
             <View style={styles.loginContainer}>
               <Text style={[ styles.text, styles.welocomeMessage ]}>

@@ -15,7 +15,8 @@ import colors from 'colors';
 
 const styles = StyleSheet.create({
   container: {
-    height: 56,
+    height: Platform.OS === 'ios' ? 76 : 56,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
     backgroundColor: colors.gunmetal,
     alignItems: 'center',
     flexDirection: 'row'

@@ -24,6 +24,10 @@ export default class Home extends Component {
   render() {
     return (
       <Drawer ref={(ref) => { this._drawer = ref; }}>
+        <StatusBar
+          backgroundColor={colors.gunmetal}
+          barStyle="light-content"
+        />
         <AppBar
           title="Consultations"
           leftTouchButtons={[{
