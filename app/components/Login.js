@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
   }
 });
 
-class Login extends Component {
+@connect(({ user }) => ({ user }))
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -191,5 +192,3 @@ Login.route = {
     gestures: null
   }
 };
-
-export default connect(({ user }) => ({ user }))(Login);

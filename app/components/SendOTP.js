@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
   }
 });
 
-class SendOTP extends Component {
+@connect(({ user }) => ({ user }))
+export default class SendOTP extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,5 +117,3 @@ class SendOTP extends Component {
     );
   }
 }
-
-export default connect(({ user }) => ({ user }))(SendOTP);

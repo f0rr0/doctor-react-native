@@ -12,7 +12,8 @@ import TabView from 'react-native-scrollable-tab-view';
 import AppBar from 'AppBar';
 import colors from 'colors';
 
-class Home extends Component {
+@connect(null)
+export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,5 +70,3 @@ class Home extends Component {
     );
   }
 }
-
-export default connect(null)(Home);
