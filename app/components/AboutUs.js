@@ -46,11 +46,4 @@ function AboutUs({ dispatch }) {
   );
 }
 
-AboutUs.route = {
-  styles: {
-    ...NavigationStyles.SlideHorizontal,
-    gestures: null
-  }
-};
-
 export default connect(null)(AboutUs);

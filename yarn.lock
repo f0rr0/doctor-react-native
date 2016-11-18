@@ -4508,9 +4508,9 @@ react-native-gifted-spinner@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.0.4.tgz#32652b5a60423f14719a1c3125613299af0995f2"
 
-react-native-md-textinput-1mg:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-md-textinput-1mg/-/react-native-md-textinput-1mg-2.0.4.tgz#0a0a1796ce94ce9da8ca752e432b469d66f2b46e"
+react-native-md-textinput-1mg@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-md-textinput-1mg/-/react-native-md-textinput-1mg-2.0.7.tgz#34203a6a7786b77466104708afa119d0a9264f03"
 
 react-native-router-flux@^3.26.13:
   version "3.36.0"
@@ -4709,6 +4709,10 @@ redux-actions:
 redux-batched-actions@^0.1.2:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/redux-batched-actions/-/redux-batched-actions-0.1.4.tgz#f9ec8a5dcb255b0e79dac7357323f4cc042bbe87"
+
+redux-devtools-extension:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-1.0.0.tgz#f8bf7a2a093b648054a3814d6d120ad8bc8beaa9"
 
 redux-effex:
   version "1.1.2"

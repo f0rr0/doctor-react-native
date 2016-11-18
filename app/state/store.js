@@ -10,13 +10,13 @@ import { userReducer } from 'reducers';
 
 const createStoreWithNavigation = createNavigationEnabledStore({
   createStore,
-  navigationStateKey: 'navigation',
+  navigationStateKey: 'navigation'
 });
 
 const store = createStoreWithNavigation(
   combineReducers({
     navigation: NavigationReducer,
-    user: userReducer,
+    user: userReducer
   }),
   applyMiddleware(effectsMiddleware(effects))
 );

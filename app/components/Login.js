@@ -60,14 +60,16 @@ const styles = StyleSheet.create({
   },
   passwordActionsRow: {
     flexDirection: 'row',
-    marginTop: 25
+    marginTop: 15,
+    justifyContent: 'space-between'
   },
   passwordActionsContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   passwordActionText: {
+    width: 150,
+    marginTop: 10,
+    marginBottom: 10,
     color: colors.turquoise,
     fontSize: 14,
     textAlign: 'center'
@@ -83,13 +85,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone_number: '',
-      password: null
+      phone_number: props.user.phone_number || '',
+      password: ''
     };
   }
 
   render() {
     const { dispatch } = this.props;
+    const { phone_number, password } = this.state;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
@@ -102,6 +105,7 @@ class Login extends Component {
                 Login to continue to 1mg Doctors
               </Text>
               <TextInput
+                maxLength={10}
                 autoCapitalize="none"
                 autoCorrect={false}
                 keyboardType="phone-pad"
@@ -109,8 +113,11 @@ class Login extends Component {
                 highlightColor={colors.turquoise}
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
+                value={this.state.phone_number}
+                onChangeText={phone_number => this.setState({ phone_number })}
               />
               <TextInput
+                blurOnSubmit
                 autoCapitalize="none"
                 autoCorrect={false}
                 label="Password"
@@ -119,9 +126,14 @@ class Login extends Component {
                 highlightColor={colors.turquoise}
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
               />
               <TouchableOpacity
-                onPress={() => dispatch(actions.GO_TO_ROUTE('home'))}
+                onPress={() => dispatch(actions.SIGN_IN({
+                  phone_number,
+                  password
+                }))}
                 activeOpacity={1}
                 style={styles.loginButton}
               >
@@ -131,8 +143,13 @@ class Login extends Component {
               </TouchableOpacity>
               <View style={styles.passwordActionsRow}>
                 <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity activeOpacity={1}>
-                    <Text style={[styles.text, styles.passwordActionText ]}>
+                  <TouchableOpacity
+                    onPress={() => dispatch(actions.SHOW_MODAL('Authenticating...'))}
+                    activeOpacity={1}
+                  >
+                    <Text style={[
+                      styles.text, styles.passwordActionText
+                     ]}>
                       Create New Password
                     </Text>
                   </TouchableOpacity>
@@ -143,7 +160,9 @@ class Login extends Component {
                     onPress={() => dispatch(actions.GO_TO_ROUTE('sendOTP'))}
                     activeOpacity={1}
                   >
-                    <Text style={[styles.text, styles.passwordActionText ]}>
+                    <Text style={[
+                      styles.text, styles.passwordActionText
+                    ]}>
                       Forgot Password?
                     </Text>
                   </TouchableOpacity>
@@ -163,4 +182,4 @@ Login.route = {
   }
 };
 
-export default connect(null)(Login);
+export default connect(({ user }) => ({ user }))(Login);

@@ -77,8 +77,7 @@ class SendOTP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone_number: '',
-      password: null
+      phone_number: props.user.phone_number,
     };
   }
 
@@ -110,6 +109,8 @@ class SendOTP extends Component {
                 highlightColor={colors.turquoise}
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
+                value={this.state.phone_number}
+                onChangeText={phone_number => this.setState({ phone_number })}
               />
               <TouchableOpacity
                 activeOpacity={1}
@@ -126,11 +127,4 @@ class SendOTP extends Component {
   }
 }
 
-SendOTP.route = {
-  styles: {
-    ...NavigationStyles.SlideHorizontal,
-    gestures: null
-  }
-};
-
-export default connect(null)(SendOTP);
+export default connect(({ user }) => ({ user }))(SendOTP);

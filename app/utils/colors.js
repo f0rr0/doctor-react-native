@@ -9,5 +9,6 @@ export default {
   black: '#212121',
   grey: '#e5e5e5',
   darkGrey: '#757575',
-  mediumGrey: '#9e9e9e'
+  mediumGrey: '#9e9e9e',
+  overlay: 'rgba(0, 0, 0, 0.7)'
 };
