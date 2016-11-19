@@ -51,25 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 16,
     marginBottom: 16
-  },
-  passwordActionsRow: {
-    flexDirection: 'row',
-    marginTop: 25
-  },
-  passwordActionsContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  passwordActionText: {
-    color: colors.turquoise,
-    fontSize: 14,
-    textAlign: 'center'
-  },
-  verticalDivider: {
-    backgroundColor: colors.turquoise,
-    width: 1,
-    height: 35
   }
 });
 

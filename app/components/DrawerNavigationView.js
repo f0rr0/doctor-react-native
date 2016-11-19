@@ -150,6 +150,7 @@ function DrawerNavigationView({ close, user, dispatch }) {
     },
     {
       text: 'Change Password',
+      onPress: () => dispatch(actions.GO_TO_ROUTE('changePassword'))
     }
   ];
 
