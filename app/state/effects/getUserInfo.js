@@ -11,7 +11,6 @@ export default async function getUserInfo({ action, dispatch, getState }) {
   const user = action.payload;
   const request = generateGetRequest('https://stagapi.1mgdoctors.com/api/doctor/specialities', user);
   try {
-    dispatch(actions.SHOW_MODAL('Signing in...'));
     const response = await fetch(request);
     const json = await response.json();
     if (!json.error) {

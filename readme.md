@@ -1,3 +1,15 @@
+#### Development
+```
+brew update
+brew install watchman
+brew cask install react-native-debugger
+yarn global add react-native
+git clone https://github.com/1mgOfficial/doctor-react-native && cd doctor-react-native
+yarn install
+react-native run-ios
+react-native run-android
+```
+
 #### Screenshots
 
 | Current       | RN Android | RN iOS |

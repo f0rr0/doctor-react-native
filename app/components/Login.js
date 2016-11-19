@@ -107,7 +107,7 @@ export default class Login extends Component {
             backgroundColor={colors.gunmetal}
             barStyle="light-content"
           />
-          <AppBar title="Login" />
+          <AppBar title="Login" leftTouchButtons="none" />
             <View style={styles.loginContainer}>
               <Text style={[ styles.text, styles.welocomeMessage ]}>
                 Welcome back!
