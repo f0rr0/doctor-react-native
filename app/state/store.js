@@ -10,18 +10,22 @@ import { createNavigationEnabledStore, NavigationReducer } from '@exponent/ex-na
 import effects from 'effects';
 import { userReducer } from 'reducers';
 
-const createStoreWithNavigation = createNavigationEnabledStore({
-  createStore,
-  navigationStateKey: 'navigation'
-});
-
 export function configureStore(onComplete = () => {}) {
-  const store = compose(autoRehydrate())(createStoreWithNavigation)(
+  const createStoreWithNavigation = createNavigationEnabledStore({
+    createStore,
+    navigationStateKey: 'navigation'
+  });
+  const enhancer = compose(
+    applyMiddleware(effectsMiddleware(effects)),
+    autoRehydrate(),
+    global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop
+  );
+  const store = createStoreWithNavigation(
     combineReducers({
       navigation: NavigationReducer,
       user: userReducer
     }),
-    applyMiddleware(effectsMiddleware(effects))
+    enhancer
   );
   persistStore(store, { storage: AsyncStorage }, onComplete);
   return store;
