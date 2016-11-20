@@ -64,7 +64,7 @@ export default class ChangePassword extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
-          <AppBar title="Forgot Password" />
+          <AppBar title="Change Password" />
             <View style={[ styles.loginContainer, styles.full ]}>
               <TextInput
                 secureTextEntry
