@@ -8,6 +8,7 @@ import {
   Text,
   View,
   StatusBar,
+  Dimensions,
   Platform
 } from 'react-native';
 import DrawerNavigationView from 'DrawerNavigationView';
@@ -20,10 +21,11 @@ export default class Drawer extends Component {
     this._drawer.closeDrawer();
   }
   render() {
+    const { width } = Dimensions.get('window');
     return (
       <DrawerLayout
         ref={(ref) => this._drawer = ref}
-        drawerWidth={304}
+        drawerWidth={width * 0.845}
         drawerPosition={DrawerLayout.positions.Left}
         onDrawerSlide={() => {
           if (Platform.OS === 'ios') {

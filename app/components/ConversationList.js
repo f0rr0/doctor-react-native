@@ -33,16 +33,21 @@ export default class ConversationList extends Component {
 
   renderRow = (rowData, sectionID, rowID) => <ConversationRow key={rowID} user={rowData} rowID={rowID} />
 
+  onEndReached = () => {
+    console.log('load more')
+  }
+
   render() {
     return(
       <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderSeparator={this.renderSeparator}
+        // showsVerticalScrollIndicator={false}
         initialListSize={6}
         onEndReachedThreshold={10}
         enableEmptySections={false}
-        onEndReached={() => console.log('load more')}
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        renderSeparator={this.renderSeparator}
+        onEndReached={this.onEndReached}
       />
     );
   }
