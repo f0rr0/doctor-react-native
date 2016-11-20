@@ -1,5 +1,5 @@
 /**
- * @providesModule BlockingModal
+ * @providesModule BlockingModalActivity
  */
 
 import React, { Component } from 'react';
@@ -27,14 +27,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: colors.white,
-    elevation: 8
+    elevation: 8,
+    borderRadius: 2,
+    elevation: 8,
+    shadowColor: colors.black,
+    shadowOpacity: 0.3,
+    shadowOffset: {
+      width: 0,
+      height: 19
+    },
+    shadowRadius: 38
   },
   text: {
     paddingLeft: 20
   }
 });
 
-function BlockingModal({ text = 'Loading...' }) {
+function BlockingModalActivity({ text = 'Loading...' }) {
   return (
     <View style={styles.modalContainer}>
       <View style={styles.modal}>
@@ -50,7 +59,7 @@ function BlockingModal({ text = 'Loading...' }) {
   );
 }
 
-BlockingModal.route = {
+BlockingModalActivity.route = {
   styles: {
     ...NavigationStyles.Fade,
     sceneAnimations: (props) => {
@@ -81,4 +90,4 @@ BlockingModal.route = {
   }
 };
 
-export default BlockingModal;
+export default BlockingModalActivity;

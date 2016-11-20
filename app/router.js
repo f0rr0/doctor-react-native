@@ -3,7 +3,8 @@
  */
 
 import { createRouter } from '@exponent/ex-navigation';
-import BlockingModal from 'BlockingModal';
+import BlockingModalActivity from 'BlockingModalActivity';
+import BlockingModalDialog from 'BlockingModalDialog';
 import Login from 'Login';
 import ChangePassword from 'ChangePassword';
 import SendOTP from 'SendOTP';
@@ -13,7 +14,8 @@ import ContactUs from 'ContactUs';
 import Profile from 'Profile';
 
 export default createRouter(() => ({
-  modal: () => BlockingModal,
+  modalActivity: () => BlockingModalActivity,
+  modalDialog: () => BlockingModalDialog,
   login: () => Login,
   sendOTP: () => SendOTP,
   changePassword: () => ChangePassword,

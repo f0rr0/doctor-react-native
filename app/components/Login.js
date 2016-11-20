@@ -155,7 +155,7 @@ export default class Login extends Component {
               <View style={styles.passwordActionsRow}>
                 <View style={styles.passwordActionsContainer}>
                   <TouchableOpacity
-                    onPress={() => dispatch(actions.SHOW_MODAL('Authenticating...'))}
+                    onPress={() => dispatch(actions.SHOW_MODAL_ACTIVITY('Authenticating...'))}
                     activeOpacity={1}
                   >
                     <Text style={[

@@ -6,7 +6,8 @@ import actions from 'actions';
 import goBack from 'goBack';
 import goToRoute from 'goToRoute';
 import clearRouteStack from 'clearRouteStack';
-import showModal from 'showModal';
+import showModalActivity from 'showModalActivity';
+import showModalDialog from 'showModalDialog';
 import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
 import signOut from 'signOut';
@@ -33,8 +34,13 @@ export default [
     error: genericErrorHandler
   },
   {
-    action: actions.SHOW_MODAL().type,
-    effect: showModal,
+    action: actions.SHOW_MODAL_ACTIVITY().type,
+    effect: showModalActivity,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.SHOW_MODAL_DIALOG().type,
+    effect: showModalDialog,
     error: genericErrorHandler
   },
   {
