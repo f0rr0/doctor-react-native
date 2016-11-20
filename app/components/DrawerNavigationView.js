@@ -51,24 +51,28 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     height: 172,
-    backgroundColor: colors.gunmetal
+    backgroundColor: colors.gunmetal,
+    flexDirection: 'column',
+    paddingTop: 40,
+    paddingLeft: 16
+  },
+  profilePicContainer: {
+    flexDirection: 'row',
+    marginBottom: 11
   },
   profilePic: {
-    marginTop: 40,
-    marginLeft: 16,
-    marginBottom: 11,
     height: 64,
     width: 64,
     borderRadius: 32
   },
   text: {
-    marginLeft: 16,
     color: colors.black,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
     fontSize: 14,
     lineHeight: 21
   },
   navigationContainer: {
+    marginLeft: 16,
     flexDirection: 'column',
     alignItems: 'stretch',
     backgroundColor: colors.white,
@@ -175,15 +179,19 @@ function DrawerNavigationView({ close, user, dispatch }) {
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
-        <TouchableOpacity onPress={() => {
-          dispatch(actions.GO_TO_ROUTE('profile'));
-          close();
-        }}>
-          <Image
-            source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
-            style={styles.profilePic}
-          />
-        </TouchableOpacity>
+        <View style={styles.profilePicContainer}>
+          <TouchableOpacity
+              onPress={() => {
+                dispatch(actions.GO_TO_ROUTE('profile'));
+                close();
+              }}
+            >
+            <Image
+              source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
+              style={styles.profilePic}
+            />
+          </TouchableOpacity>
+        </View>
         <Text
           style={[
             styles.text, styles.boldText, styles.whiteText
