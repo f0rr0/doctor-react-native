@@ -106,7 +106,6 @@ function BlockingModalDialog({ type, onConfirm = () => {}, dispatch }) {
       icon = require('../assets/drawable-xxhdpi/modal_speciality_icon.png');
       title = 'SIGN OUT'
       message = 'Are you sure you want to log out?';
-      onConfirm = () => dispatch(actions.SIGN_OUT);
       break;
     default:
       icon = require('../assets/drawable-xxhdpi/modal_flag_icon.png');
