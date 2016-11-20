@@ -854,7 +854,7 @@ babel-preset-react-native-stage-0:
     babel-plugin-transform-function-bind "^6.5.2"
     babel-preset-react-native "^1.5.6"
 
-babel-preset-react-native@^1.5.6, babel-preset-react-native@^1.9.0, babel-preset-react-native@1.9.0:
+babel-preset-react-native@^1.5.6, babel-preset-react-native@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/babel-preset-react-native/-/babel-preset-react-native-1.9.0.tgz#035fc06c65f4f2a02d0336a100b2da142f36dab1"
   dependencies:
@@ -2168,7 +2168,7 @@ fbjs-scripts@^0.7.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@^0.8.1, fbjs@^0.8.3, fbjs@^0.8.4:
+fbjs@^0.8.3, fbjs@^0.8.4:
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.5.tgz#f69ba8a876096cb1b9bffe4d7c1e71c19d39d008"
   dependencies:
@@ -4334,14 +4334,6 @@ rc@^1.1.2:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-addons-pure-render-mixin@^15.0.2:
-  version "15.3.2"
-  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.3.2.tgz#c5f54764667ead26e6cdf7178b6c8dbbd8463ec2"
-
-react-addons-pure-render-mixin@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.0.2.tgz#b7731c5cc7f21214d68a78c84f40df3aefdf462f"
-
 react-addons-shallow-compare@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.3.2.tgz#c9edba49b9eab44d0c59024d289beb1ab97318b5"
@@ -4437,14 +4429,6 @@ react-native:
     yeoman-environment "1.5.3"
     yeoman-generator "0.21.2"
 
-react-native-action-bar:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-native-action-bar/-/react-native-action-bar-1.0.8.tgz#63edc173af8f4aa6a43af9e96244c307591ca0c2"
-  dependencies:
-    lodash "^4.13.1"
-    react-native-gifted-spinner "0.0.4"
-    react-native-router-flux "^3.26.13"
-
 react-native-debugger-open:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-debugger-open/-/react-native-debugger-open-0.3.1.tgz#bb07f4b9768a6aaeae4c1e18189a93e9c391da3c"
@@ -4464,33 +4448,9 @@ react-native-drawer-layout, react-native-drawer-layout@^1.0.0:
     autobind-decorator "^1.3.2"
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-experimental-navigation@0.26.x:
-  version "0.26.10"
-  resolved "https://registry.yarnpkg.com/react-native-experimental-navigation/-/react-native-experimental-navigation-0.26.10.tgz#355e37929a2bfb84088dca331f34bc575297df68"
-  dependencies:
-    babel-plugin-syntax-flow "^6.8.0"
-    babel-plugin-transform-flow-strip-types "^6.8.0"
-    babel-preset-react-native "^1.9.0"
-    clamp "^1.0.1"
-    fbjs "^0.8.1"
-    react-addons-pure-render-mixin "^15.0.2"
-
-react-native-gifted-spinner@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.0.4.tgz#32652b5a60423f14719a1c3125613299af0995f2"
-
 react-native-md-textinput-1mg:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/react-native-md-textinput-1mg/-/react-native-md-textinput-1mg-2.0.8.tgz#4b731e23412aee140a05e490747bbdca4d0a8c46"
-
-react-native-router-flux@^3.26.13:
-  version "3.36.0"
-  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.36.0.tgz#2f36360d684b5e546ecee2d2ee1baccc8e1dd74f"
-  dependencies:
-    react-addons-pure-render-mixin "15.0.2"
-    react-native-experimental-navigation "0.26.x"
-    react-native-tabs "^1.0.9"
-    react-static-container "1.0.1"
 
 react-native-scrollable-tab-view:
   version "0.6.0"
@@ -4502,10 +4462,6 @@ react-native-scrollable-tab-view:
 react-native-tab-view@^0.0.38:
   version "0.0.38"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.38.tgz#4194bba0abda9f781101c1a995c92733b194461a"
-
-react-native-tabs@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -4523,7 +4479,7 @@ react-redux, react-redux@^4.4.5:
     lodash "^4.2.0"
     loose-envify "^1.1.0"
 
-react-static-container@^1.0.0, react-static-container@^1.0.1, react-static-container@1.0.1:
+react-static-container@^1.0.0, react-static-container@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
