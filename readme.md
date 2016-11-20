@@ -18,3 +18,5 @@ react-native run-android
 | ![Drawer](./screenshots/Drawer.png)  | ![Drawer](./screenshots/Drawer-RN-Android.png)  | ![Drawer](./screenshots/Drawer-RN-iOS.png) |
 | ![Login](./screenshots/Login.png)  | ![Login](./screenshots/Login-RN-Android.png)  | ![Login](./screenshots/Login-RN-iOS.png) |
 | ![Login-Active](./screenshots/Login-Active.png)  | ![Login-Active](./screenshots/Login-Active-RN-Android.png)  | ![Login-Active](./screenshots/Login-Active-RN-iOS.png) |
+| ![TabView](./screenshots/TabView.png)  | ![TabView](./screenshots/TabView-RN-Android.png)  | ![TabView](./screenshots/TabView-RN-iOS.png) |
+| ![ChangePassword](./screenshots/ChangePassword.png)  | ![ChangePassword](./screenshots/ChangePassword-RN-Android.png)  | ![ChangePassword](./screenshots/ChangePassword-RN-iOS.png) |
