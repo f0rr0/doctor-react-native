@@ -168,7 +168,7 @@ function DrawerNavigationView({ close, user, dispatch }) {
   const itemGroupThree = [
     {
       text: 'Sign Out',
-      onPress: () => dispatch(actions.SIGN_OUT)
+      onPress: () => dispatch(actions.SHOW_MODAL_DIALOG('sign_out', () => dispatch(actions.SIGN_OUT)))
     }
   ];
 

@@ -75,10 +75,11 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     paddingHorizontal: 14,
-    alignSelf: 'flex-end'
+    justifyContent: 'center'
   },
   button: {
     letterSpacing: 0.5,
+    textAlign: 'center',
     fontSize: 14,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
     color: colors.turquoise
@@ -100,6 +101,12 @@ function BlockingModalDialog({ type, onConfirm = () => {}, dispatch }) {
       icon = require('../assets/drawable-xxhdpi/modal_flag_icon.png');
       title = 'MARK AS SPAM';
       message = 'If you mark this as spam you will not see this query again.';
+      break;
+    case 'sign_out':
+      icon = require('../assets/drawable-xxhdpi/modal_speciality_icon.png');
+      title = 'SIGN OUT'
+      message = 'Are you sure you want to log out?';
+      onConfirm = () => dispatch(actions.SIGN_OUT);
       break;
     default:
       icon = require('../assets/drawable-xxhdpi/modal_flag_icon.png');

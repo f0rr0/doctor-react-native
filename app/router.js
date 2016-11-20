@@ -23,4 +23,6 @@ export default createRouter(() => ({
   about: () => AboutUs,
   contact: () => ContactUs,
   profile: () => Profile
-}));
+}), {
+  ignoreSerializableWarnings: true
+});
