@@ -18,7 +18,6 @@ export default async function changePassword({ action, dispatch, getState }) {
       dispatch(actions.GO_TO_ROUTE('home'));
       dispatch(actions.SHOW_LOCAL_ALERT(json.success));
     } else {
-      console.log(json);
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));
     }

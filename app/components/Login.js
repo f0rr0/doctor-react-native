@@ -11,7 +11,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Platform,
   StyleSheet
 } from 'react-native';
 import TextInput from 'MaterialTextInput';
@@ -20,18 +19,20 @@ import { connect } from 'react-redux';
 import AppBar from 'AppBar';
 import actions from 'actions';
 import colors from 'colors';
+import fonts from 'fonts';
 
 const styles = StyleSheet.create({
   full: {
     flex: 1
   },
   loginContainer: {
+    flexDirection: 'column',
     marginLeft: 20,
     marginRight: 20,
     marginTop: 30
   },
   text: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
+    fontFamily: fonts.regular,
     fontSize: 16,
     color: colors.black
   },
@@ -47,38 +48,27 @@ const styles = StyleSheet.create({
     lineHeight: 21
   },
   loginButton: {
-    marginTop: 25,
+    marginTop: 33,
     backgroundColor: colors.turquoise,
     alignItems: 'center',
     justifyContent: 'center'
   },
   loginText: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
+    fontFamily: fonts.medium,
     color: colors.white,
     fontSize: 16,
     marginTop: 16,
     marginBottom: 16
   },
-  passwordActionsRow: {
+  forgotPasswordRow: {
     flexDirection: 'row',
-    marginTop: 15,
-    justifyContent: 'space-between'
-  },
-  passwordActionsContainer: {
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    marginTop: 11
   },
   passwordActionText: {
-    width: 150,
-    marginTop: 10,
-    marginBottom: 10,
     color: colors.turquoise,
-    fontSize: 14,
-    textAlign: 'center'
-  },
-  verticalDivider: {
-    backgroundColor: colors.turquoise,
-    width: 1,
-    height: 35
+    fontSize: 12,
+    lineHeight: 18,
   }
 });
 
@@ -140,6 +130,16 @@ export default class Login extends Component {
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
               />
+              <View style={styles.forgotPasswordRow}>
+                <TouchableOpacity
+                  onPress={() => dispatch(actions.GO_TO_ROUTE('sendOTP'))}
+                  activeOpacity={1}
+                >
+                  <Text style={[ styles.text, styles.passwordActionText ]}>
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity
                 onPress={() => dispatch(actions.SIGN_IN({
                   phone_number,
@@ -152,33 +152,6 @@ export default class Login extends Component {
                   LOGIN
                 </Text>
               </TouchableOpacity>
-              <View style={styles.passwordActionsRow}>
-                <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity
-                    onPress={() => dispatch(actions.SHOW_MODAL_ACTIVITY('Authenticating...'))}
-                    activeOpacity={1}
-                  >
-                    <Text style={[
-                      styles.text, styles.passwordActionText
-                     ]}>
-                      Create New Password
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.verticalDivider} />
-                <View style={styles.passwordActionsContainer}>
-                  <TouchableOpacity
-                    onPress={() => dispatch(actions.GO_TO_ROUTE('sendOTP'))}
-                    activeOpacity={1}
-                  >
-                    <Text style={[
-                      styles.text, styles.passwordActionText
-                    ]}>
-                      Forgot Password?
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
             </View>
         </View>
       </TouchableWithoutFeedback>

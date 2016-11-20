@@ -27,9 +27,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: colors.white,
-    elevation: 8,
+    elevation: 15,
     borderRadius: 2,
-    elevation: 8,
     shadowColor: colors.black,
     shadowOpacity: 0.3,
     shadowOffset: {

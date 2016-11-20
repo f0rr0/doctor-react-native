@@ -15,6 +15,7 @@ import { NavigationStyles } from '@exponent/ex-navigation';
 import { connect } from 'react-redux';
 import actions from 'actions';
 import colors from 'colors';
+import fonts from 'fonts';
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -62,14 +63,14 @@ const styles = StyleSheet.create({
   textTitle: {
     color: colors.black,
     fontSize: 20,
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
+    fontFamily: fonts.medium,
     textAlign: 'center',
     marginBottom: 8
   },
   textMessage: {
     color: colors.black,
     fontSize: 14,
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
+    fontFamily: fonts.regular,
     textAlign: 'center'
   },
   buttonsContainer: {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     textAlign: 'center',
     fontSize: 14,
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
+    fontFamily: fonts.medium,
     color: colors.turquoise
   },
   buttonCancel:{

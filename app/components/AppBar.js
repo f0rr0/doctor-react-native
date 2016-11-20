@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux';
 import actions from 'actions';
 import colors from 'colors';
+import fonts from 'fonts';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,12 +32,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   title: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
+    fontFamily: fonts.medium,
     fontSize: 20,
     color: colors.white
   },
   subTitle: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'sans-serif-light',
+    fontFamily: fonts.light,
     fontSize: 14,
     color: colors.white
   },

@@ -11,5 +11,10 @@ export default {
   grey: '#e5e5e5',
   darkGrey: '#757575',
   mediumGrey: '#9e9e9e',
-  overlay: 'rgba(0, 0, 0, 0.7)'
+  overlay: 'rgba(0, 0, 0, 0.7)',
+  green: '#1abc9c',
+  yellow: '#f1c40f',
+  red: '#e74c3c',
+  purple: '#8e44ad',
+  blue: '#3498db'
 };

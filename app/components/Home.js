@@ -3,14 +3,33 @@
  */
 
 import React, { Component } from 'react';
-import { Text, StatusBar, View } from 'react-native';
+import {
+  Text,
+  StatusBar,
+  View,
+  StyleSheet
+} from 'react-native';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import { connect } from 'react-redux';
 import actions from 'actions';
 import Drawer from 'Drawer';
 import TabView from 'react-native-scrollable-tab-view';
+import ConversationList from 'ConversationList';
 import AppBar from 'AppBar';
 import colors from 'colors';
+import fonts from 'fonts';
+
+const styles = StyleSheet.create({
+  tabBarUnderlineStyle: {
+    backgroundColor: colors.turquoise,
+    height: 4
+  },
+  tabBarTextStyle: {
+    paddingTop: 16,
+    fontSize: 15,
+    fontFamily: fonts.medium
+  }
+});
 
 @connect(null)
 export default class Home extends Component {
@@ -43,26 +62,21 @@ export default class Home extends Component {
             icon: require('../assets/drawable-xxhdpi/nav_icon.png'),
             onPress: this.openDrawer,
             style: {
-             height: 12,
-             width: 16
+              height: 12,
+              width: 16
             }
           }]}
         />
         <TabView
-          tabBarBackgroundColor="#042430"
-          tabBarActiveTextColor="#FFFFFF"
-          tabBarInactiveTextColor="#777777"
-          tabBarUnderlineStyle={{
-            backgroundColor: '#0bc5d8',
-            height: 3
-          }}
-          tabBarTextStyle={{
-            paddingTop: 16,
-            // fontFamily: 'Roboto',
-            fontSize: 15
-          }}
+          tabBarBackgroundColor={colors.gunmetal}
+          tabBarActiveTextColor={colors.white}
+          tabBarInactiveTextColor={colors.darkGrey}
+          tabBarUnderlineStyle={styles.tabBarUnderlineStyle}
+          tabBarTextStyle={styles.tabBarTextStyle}
         >
-          <View tabLabel="NEW" />
+          <View tabLabel="NEW">
+            <ConversationList />
+          </View>
           <View tabLabel="FOLLOW UP" />
           <View tabLabel="ALL" />
         </TabView>

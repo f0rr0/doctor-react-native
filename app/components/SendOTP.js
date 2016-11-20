@@ -10,7 +10,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Platform,
   StyleSheet
 } from 'react-native';
 import TextInput from 'MaterialTextInput';
@@ -19,6 +18,7 @@ import { connect } from 'react-redux';
 import AppBar from 'AppBar';
 import actions from 'actions';
 import colors from 'colors';
+import fonts from 'fonts';
 
 const styles = StyleSheet.create({
   full: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   text: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
+    fontFamily: fonts.regular,
     fontSize: 16,
     color: colors.black
   },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   loginText: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium',
+    fontFamily: fonts.medium,
     color: colors.white,
     fontSize: 16,
     marginTop: 16,

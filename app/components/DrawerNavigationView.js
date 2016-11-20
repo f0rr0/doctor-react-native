@@ -16,6 +16,7 @@ import {
   Platform
 } from 'react-native';
 import colors from 'colors';
+import fonts from 'fonts';
 import { connect } from 'react-redux';
 import actions from 'actions';
 
@@ -67,17 +68,17 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.black,
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif',
+    fontFamily: fonts.regular,
     fontSize: 14,
     lineHeight: 21
   },
   navigationContainer: {
-    marginLeft: 16,
     flexDirection: 'column',
     alignItems: 'stretch',
     backgroundColor: colors.white,
   },
   button: {
+    paddingLeft: 16,
     height: 48,
     justifyContent: 'center'
   },
@@ -95,39 +96,50 @@ const styles = StyleSheet.create({
     color: colors.turquoise
   },
   boldText: {
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Bold' : 'sans-serif-medium'
+    fontFamily: fonts.medium
   }
-})
+});
 
-function DrawerNavigationView({ close, user, dispatch }) {
-  const Touchable = ({ close = () => {}, onPress = () => {}, children }) => {
-    if (Platform.OS === 'ios' || Platform.Version < 21) {
-      return (
-        <TouchableOpacity onPress={() => {
-          close();
-          onPress();
-        }}>
-          <View style={styles.button}>
-            {children}
-          </View>
-        </TouchableOpacity>
-      );
-    }
+const Touchable = ({ close = () => {}, onPress = () => {}, children }) => {
+  if (Platform.OS === 'ios' || Platform.Version < 21) {
     return (
-      <TouchableNativeFeedback
-        onPress={() => {
-          close();
-          onPress();
-        }}
-        background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
-      >
+      <TouchableOpacity onPress={() => {
+        close();
+        onPress();
+      }}>
         <View style={styles.button}>
           {children}
         </View>
-      </TouchableNativeFeedback>
-    )
+      </TouchableOpacity>
+    );
   }
+  return (
+    <TouchableNativeFeedback
+      onPress={() => {
+        close();
+        onPress();
+      }}
+      background={TouchableNativeFeedback.Ripple(colors.darkGrey, false)}
+    >
+      <View style={styles.button}>
+        {children}
+      </View>
+    </TouchableNativeFeedback>
+  )
+};
 
+const handleContact = (dispatch, user) => {
+  const url = `mailto:contact@1mgdoctors.com?subject=1mgDoctors ${Platform.OS}: Query ${user.name}`;
+  Linking.canOpenURL(url).then(supported => {
+    if (!supported) {
+      dispatch(actions.GO_TO_ROUTE('contact'));
+    } else {
+      Linking.openURL(url);
+    }
+  });
+};
+
+function DrawerNavigationView({ close, user, dispatch }) {
   const toButtons = ({ text, onPress }, index) =>
     <Touchable
       key={index}
@@ -136,17 +148,6 @@ function DrawerNavigationView({ close, user, dispatch }) {
     >
       <Text style={styles.text}>{text}</Text>
     </Touchable>;
-
-  const handleContact = (dispatch, user) => {
-    const url = `mailto:contact@1mgdoctors.com?subject=1mgDoctors ${Platform.OS}: Query ${user.name}`;
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        dispatch(actions.GO_TO_ROUTE('contact'));
-      } else {
-        Linking.openURL(url);
-      }
-    });
-  };
 
   const itemGroupOne = [
     {
