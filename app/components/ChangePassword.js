@@ -54,9 +54,9 @@ export default class ChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current_password: '',
+      old_password: '',
       new_password: '',
-      confirm_new_password: ''
+      confirm_password: ''
     };
   }
 
@@ -77,8 +77,8 @@ export default class ChangePassword extends Component {
                   highlightColor={colors.turquoise}
                   labelColor={colors.mediumGrey}
                   selectionColor={colors.turquoise}
-                  value={this.state.current_password}
-                  onChangeText={current_password => this.setState({ current_password })}
+                  value={this.state.old_password}
+                  onChangeText={old_password => this.setState({ old_password })}
                 />
                 <TextInput
                   secureTextEntry
@@ -101,13 +101,14 @@ export default class ChangePassword extends Component {
                   highlightColor={colors.turquoise}
                   labelColor={colors.mediumGrey}
                   selectionColor={colors.turquoise}
-                  value={this.state.confirm_new_password}
-                  onChangeText={confirm_new_password => this.setState({ confirm_new_password })}
+                  value={this.state.confirm_password}
+                  onChangeText={confirm_password => this.setState({ confirm_password })}
                 />
               </View>
               <TouchableOpacity
                 activeOpacity={1}
                 style={styles.loginButton}
+                onPress={() => dispatch(actions.CHANGE_PASSWORD(this.state))}
               >
                 <Text style={styles.loginText}>
                   CONFIRM

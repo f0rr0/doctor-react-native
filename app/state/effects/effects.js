@@ -11,6 +11,7 @@ import showModalDialog from 'showModalDialog';
 import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
 import signOut from 'signOut';
+import changePassword from 'changePassword';
 import getUserInfo from 'getUserInfo';
 
 function genericErrorHandler({ action, error }) {
@@ -56,6 +57,11 @@ export default [
   {
     action: actions.SIGN_OUT.type,
     effect: signOut,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.CHANGE_PASSWORD().type,
+    effect: changePassword,
     error: genericErrorHandler
   },
   {

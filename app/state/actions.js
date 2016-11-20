@@ -13,6 +13,7 @@ export default {
  SHOW_LOCAL_ALERT: (message) => createAction('SHOW_LOCAL_ALERT')({ message }),
  SIGN_IN: (credentials) => createAction('SIGN_IN')(credentials),
  SIGN_OUT: createAction('SIGN_OUT')(),
+ CHANGE_PASSWORD: (credentials) => createAction('CHANGE_PASSWORD')(credentials),
  SET_USER_INFO: (info) => createAction('SET_USER_INFO')(info),
  GET_USER_INFO: (credentials) => createAction('GET_USER_INFO')(credentials)
 };

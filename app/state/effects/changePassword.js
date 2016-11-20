@@ -1,28 +1,24 @@
 /**
- * @providesModule signIn
+ * @providesModule changePassword
  */
 
 import { NavigationActions } from '@exponent/ex-navigation';
 import router from 'router';
 import actions from 'actions';
-import { generateLoginRequest } from 'networking';
+import { generatePostRequest } from 'networking';
 
-export default async function signIn({ action, dispatch, nextDispatchAsync, getState }) {
-  dispatch(actions.SHOW_MODAL_ACTIVITY('Authenticating...'));
-  const request = generateLoginRequest('https://stagapi.1mgdoctors.com/api/doctor_login', action.payload);
+export default async function changePassword({ action, dispatch, getState }) {
+  dispatch(actions.SHOW_MODAL_ACTIVITY('Applying changes...'));
+  const { user } = getState();
+  const request = generatePostRequest('https://stagapi.1mgdoctors.com/api/doctor/change_password', action.payload, user);
   try {
     const response = await fetch(request);
     const json = await response.json();
     if (json.success) {
-      dispatch(actions.SHOW_MODAL_ACTIVITY('Signing in...'));
-      const { doctor_guid, phone_access_token } = json;
-      const { phone_number } = action.payload;
-      dispatch(actions.GET_USER_INFO({
-        phone_number,
-        doctor_guid,
-        phone_access_token
-      }));
+      dispatch(actions.GO_TO_ROUTE('home'));
+      dispatch(actions.SHOW_LOCAL_ALERT(json.success));
     } else {
+      console.log(json);
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));
     }
