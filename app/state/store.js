@@ -8,7 +8,7 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import { effectsMiddleware } from 'redux-effex';
 import { createNavigationEnabledStore, NavigationReducer } from '@exponent/ex-navigation';
 import effects from 'effects';
-import { userReducer } from 'reducers';
+import { userReducer, specialityReducer } from 'reducers';
 
 export function configureStore(onComplete = () => {}) {
   const createStoreWithNavigation = createNavigationEnabledStore({
@@ -23,7 +23,8 @@ export function configureStore(onComplete = () => {}) {
   const store = createStoreWithNavigation(
     combineReducers({
       navigation: NavigationReducer,
-      user: userReducer
+      user: userReducer,
+      speciality: specialityReducer
     }),
     enhancer
   );

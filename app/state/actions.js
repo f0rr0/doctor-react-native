@@ -15,5 +15,6 @@ export default {
  SIGN_OUT: createAction('SIGN_OUT')(),
  CHANGE_PASSWORD: (credentials) => createAction('CHANGE_PASSWORD')(credentials),
  SET_USER_INFO: (info) => createAction('SET_USER_INFO')(info),
- GET_USER_INFO: (credentials) => createAction('GET_USER_INFO')(credentials)
+ GET_USER_INFO: (credentials) => createAction('GET_USER_INFO')(credentials),
+ SET_USER_SPECIALITY: (speciality) => createAction('SET_USER_SPECIALITY')(speciality)
 };

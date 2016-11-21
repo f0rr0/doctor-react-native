@@ -6,6 +6,7 @@ import { NavigationActions } from '@exponent/ex-navigation';
 import router from 'router';
 import actions from 'actions';
 import { generateGetRequest } from 'networking';
+import { head } from 'lodash-es';
 
 export default async function getUserInfo({ action, dispatch, getState }) {
   const user = action.payload;
@@ -27,6 +28,7 @@ export default async function getUserInfo({ action, dispatch, getState }) {
         profile_pic,
         email
       }));
+      dispatch(actions.SET_USER_SPECIALITY(head(specialities)));
       dispatch(actions.GO_TO_ROUTE('home'));
     } else {
       const { error } = json;

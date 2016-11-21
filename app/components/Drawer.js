@@ -25,7 +25,7 @@ export default class Drawer extends Component {
     return (
       <DrawerLayout
         ref={(ref) => this._drawer = ref}
-        drawerWidth={width * 0.845}
+        drawerWidth={width * 0.843}
         drawerPosition={DrawerLayout.positions.Left}
         onDrawerSlide={() => {
           if (Platform.OS === 'ios') {

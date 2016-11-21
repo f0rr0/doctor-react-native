@@ -20,7 +20,6 @@ import fonts from 'fonts';
 import { connect } from 'react-redux';
 import actions from 'actions';
 
-
 // {
 //   "specialities": [
 //     {
@@ -139,15 +138,25 @@ const handleContact = (dispatch, user) => {
   });
 };
 
-function DrawerNavigationView({ close, user, dispatch }) {
-  const toButtons = ({ text, onPress }, index) =>
+function DrawerNavigationView({ close, user, speciality, dispatch }) {
+  const toButtons = ({ text, onPress, style = [] }, index) =>
     <Touchable
       key={index}
       close={close}
       onPress={onPress}
     >
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, ...style]}>{text}</Text>
     </Touchable>;
+
+  const specialities = user.specialities.map(({ name }, index) => ({
+    text: name,
+    style: speciality.name === name ? [styles.boldText, styles.turquoiseText] : [styles.boldText],
+    onPress: () => {
+      if (speciality.name !== name) {
+        dispatch(actions.SET_USER_SPECIALITY(user.specialities[index]))
+      }
+    }
+  }));
 
   const itemGroupOne = [
     {
@@ -218,24 +227,7 @@ function DrawerNavigationView({ close, user, dispatch }) {
             SPECIALITY
           </Text>
         </View>
-        <Touchable>
-          <Text
-            style={[
-              styles.text, styles.turquoiseText, styles.boldText
-            ]}
-          >
-            Skin Specialist
-          </Text>
-        </Touchable>
-        <Touchable>
-          <Text
-            style={[
-              styles.text, styles.boldText
-            ]}
-          >
-            General Physician
-          </Text>
-        </Touchable>
+        { specialities.map(toButtons) }
         <View style={styles.divider} />
         { itemGroupOne.map(toButtons) }
         <View style={styles.divider} />
@@ -247,4 +239,4 @@ function DrawerNavigationView({ close, user, dispatch }) {
   );
 }
 
-export default connect(({ user }) => ({ user }))(DrawerNavigationView);
+export default connect(({ user, speciality }) => ({ user, speciality }))(DrawerNavigationView);
