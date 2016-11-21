@@ -8,6 +8,7 @@ import BlockingModalDialog from 'BlockingModalDialog';
 import Login from 'Login';
 import ChangePassword from 'ChangePassword';
 import SendOTP from 'SendOTP';
+import VerifyOTP from 'VerifyOTP';
 import Home from 'Home';
 import AboutUs from 'AboutUs';
 import ContactUs from 'ContactUs';
@@ -18,6 +19,7 @@ export default createRouter(() => ({
   modalDialog: () => BlockingModalDialog,
   login: () => Login,
   sendOTP: () => SendOTP,
+  verifyOTP: () => VerifyOTP,
   changePassword: () => ChangePassword,
   home: () => Home,
   about: () => AboutUs,

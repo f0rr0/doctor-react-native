@@ -12,6 +12,8 @@ import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
 import signOut from 'signOut';
 import changePassword from 'changePassword';
+import sendOTP from 'sendOTP';
+import verifyOTP from 'verifyOTP';
 import getUserInfo from 'getUserInfo';
 
 function genericErrorHandler({ action, error }) {
@@ -62,6 +64,16 @@ export default [
   {
     action: actions.CHANGE_PASSWORD().type,
     effect: changePassword,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.SEND_OTP().type,
+    effect: sendOTP,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.VERIFY_OTP().type,
+    effect: verifyOTP,
     error: genericErrorHandler
   },
   {

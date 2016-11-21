@@ -2,7 +2,7 @@
  * @providesModule networking
  */
 
-export function generateLoginRequest(url, data) {
+export function generateUnauthenticatedPostRequest(url, data) {
   const body = new FormData();
   for (var field in data) {
     body.append(field, data[field]);

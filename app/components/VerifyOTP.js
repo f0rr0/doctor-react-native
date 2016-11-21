@@ -1,5 +1,5 @@
 /**
- * @providesModule SendOTP
+ * @providesModule VerifyOTP
  */
 
 import React, { Component } from 'react';
@@ -52,46 +52,66 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 16,
     marginBottom: 16
+  },
+  forgotPasswordRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 11
+  },
+  passwordActionText: {
+    color: colors.turquoise,
+    fontSize: 12,
+    lineHeight: 18,
   }
 });
 
 @connect(({ user }) => ({ user }))
-export default class SendOTP extends Component {
+export default class VerifyOTP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone_number: props.user.phone_number,
+      otp: '',
     };
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, user } = this.props;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.full}>
           <AppBar title="Forgot Password" />
             <View style={styles.loginContainer}>
               <Text style={[ styles.text, styles.forgotMessage ]}>
-                Enter your phone number and we will send you instructions to reset your password
+                Please enter the OTP sent to your registered mobile number
               </Text>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 keyboardType="phone-pad"
-                label="Phone Number"
+                label="OTP"
                 highlightColor={colors.turquoise}
                 labelColor={colors.mediumGrey}
                 selectionColor={colors.turquoise}
-                value={this.state.phone_number}
-                onChangeText={phone_number => this.setState({ phone_number })}
+                value={this.state.otp}
+                onChangeText={otp => this.setState({ otp })}
               />
+              <View style={styles.forgotPasswordRow}>
+                <TouchableOpacity
+                  onPress={() => dispatch(actions.SEND_OTP(user.phone_number))}
+                  activeOpacity={1}
+                >
+                  <Text style={[ styles.text, styles.passwordActionText ]}>
+                    Resend OTP
+                  </Text>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity
                 activeOpacity={1}
                 style={styles.loginButton}
-                onPress={() => dispatch(actions.SEND_OTP(this.state.phone_number))}
+                onPress={() => dispatch(actions.VERIFY_OTP(this.state.otp))}
               >
                 <Text style={styles.loginText}>
-                  SEND OTP
+                  CONFIRM OTP
                 </Text>
               </TouchableOpacity>
             </View>
