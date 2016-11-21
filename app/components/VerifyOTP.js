@@ -120,3 +120,10 @@ export default class VerifyOTP extends Component {
     );
   }
 }
+
+VerifyOTP.route = {
+  styles: {
+    ...NavigationStyles.Fade,
+    gestures: null
+  }
+};

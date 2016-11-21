@@ -100,3 +100,10 @@ export default class SendOTP extends Component {
     );
   }
 }
+
+SendOTP.route = {
+  styles: {
+    ...NavigationStyles.Fade,
+    gestures: null
+  }
+};
