@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   timestamp: {
     position: 'absolute',
     top: 16,
-    right: 16
+    right: 16,
+    zIndex: 2
   },
   textTimestamp: {
     fontFamily: fonts.regular,
@@ -97,7 +98,7 @@ const Touchable = ({ children, onPress }) => {
   );
 };
 
-export default function ConversationRow({ user, rowID }) {
+export default function ConversationRow({ conversation, rowID }) {
   const getAvatarColor = memoize((rowID) => {
     const rem = rowID % 6;
     switch (rem) {
@@ -114,13 +115,15 @@ export default function ConversationRow({ user, rowID }) {
       <View style={styles.container}>
         <View style={styles.timestamp}>
           <Text style={styles.textTimestamp}>
-            1d
+            {conversation.date}
           </Text>
         </View>
         <View style={[ styles.avatar, {
           backgroundColor: getAvatarColor(rowID)
         }]}>
-          <Text style={styles.textAvatar}>{user.charAt(0)}</Text>
+          <Text style={styles.textAvatar}>
+            {conversation.patient_name.charAt(0)}
+          </Text>
         </View>
         <View style={styles.infoContainer}>
           <Text
@@ -128,21 +131,21 @@ export default function ConversationRow({ user, rowID }) {
             ellipsizeMode="tail"
             style={styles.textName}
           >
-            {user}
+            {conversation.patient_name}
           </Text>
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
             style={styles.textInfo}
           >
-            25, Male
+            {conversation.patient_age}, {conversation.patient_gender}
           </Text>
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
             style={styles.textInfo}
           >
-            What are the medicines to take for cdcdcds
+            {conversation.message || 'NULL :('}
           </Text>
         </View>
         {/* <View style={styles.badge}><Text style={styles.textBadge}>3</Text></View> */}

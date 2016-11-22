@@ -15,6 +15,8 @@ import changePassword from 'changePassword';
 import sendOTP from 'sendOTP';
 import verifyOTP from 'verifyOTP';
 import getUserInfo from 'getUserInfo';
+import getConversations from 'getConversations';
+import refreshConversations from 'refreshConversations';
 
 function genericErrorHandler({ action, error }) {
   console.log({error, action});
@@ -79,6 +81,16 @@ export default [
   {
     action: actions.GET_USER_INFO().type,
     effect: getUserInfo,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.GET_CONVERSATIONS().type,
+    effect: getConversations,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.REFRESH_CONVERSATIONS().type,
+    effect: refreshConversations,
     error: genericErrorHandler
   }
 ];

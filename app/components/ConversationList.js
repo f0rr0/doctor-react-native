@@ -8,9 +8,14 @@ import {
   ListView,
   RefreshControl,
   Text,
-  StyleSheet
+  ActivityIndicator,
+  StyleSheet,
+  Platform
 } from 'react-native';
+import { connect } from 'react-redux';
+import deepEqual from 'deep-equal';
 import ConversationRow from 'ConversationRow';
+import actions from 'actions';
 import colors from 'colors';
 import fonts from 'fonts';
 
@@ -18,42 +23,75 @@ const styles = StyleSheet.create({
   separator: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.grey
+  },
+  full: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
+const LoadingView = () => (
+  <View style={styles.full}>
+    <ActivityIndicator
+      size={Platform.OS === 'ios' ? 'large' : 65}
+      color={colors.turquoise}
+    />
+  </View>
+);
+
+const NoData = () => (
+  <View style={styles.full}>
+    <Text>No consultations found</Text>
+  </View>
+);
+
+@connect(null)
 export default class ConversationList extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(['Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi', 'Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi', 'Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi', 'Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi', 'Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi', 'Gaurav', 'Sunit', 'Himanshu', 'Siddharth', 'Ronak', 'Shubhangi']),
-      refreshing: false
-    };
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
+  }
+
+  componentDidMount() {
+    const { dispatch, conversations, category, active } = this.props;
+    if (!!!conversations.loading) {
+      dispatch(actions.GET_CONVERSATIONS(category));
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return !deepEqual(nextProps.conversations, this.props.conversations);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, category, speciality } = this.props;
+    if (nextProps.speciality !== speciality) {
+      dispatch(actions.GET_CONVERSATIONS(category));
+    } else if (!this.props.active && nextProps.active && !!!nextProps.conversations.loading && !!!this.props.conversations.loading) {
+      dispatch(actions.GET_CONVERSATIONS(category));
+    }
   }
 
   renderSeparator = (sectionID, rowID) =>
     <View key={rowID} style={styles.separator} />;
 
   renderRow = (rowData, sectionID, rowID) =>
-    <ConversationRow key={rowID} user={rowData} rowID={rowID} />;
+    <ConversationRow key={rowID} conversation={rowData} rowID={rowID} />;
 
   renderRefreshControl = () =>
     <RefreshControl
-      refreshing={this.state.refreshing}
+      refreshing={!!this.props.conversations.refreshing}
       onRefresh={this.onRefresh}
       colors={[colors.turquoise]}
       tintColor={colors.turquoise}
     />;
 
   onRefresh = () => {
-    this.setState({
-      refreshing: true
-    });
-    setTimeout(() => {
-      this.setState({
-        refreshing: false
-      });
-    }, 2000);
+    const { dispatch, category, conversations } = this.props;
+    if (!!!conversations.loading && !!!conversations.refreshing) {
+      dispatch(actions.REFRESH_CONVERSATIONS(category));
+    }
   };
 
   onEndReached = () => {
@@ -61,18 +99,26 @@ export default class ConversationList extends Component {
   };
 
   render() {
-    return(
-      <ListView
-        // showsVerticalScrollIndicator={false}
-        initialListSize={6}
-        onEndReachedThreshold={10}
-        enableEmptySections={false}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderSeparator={this.renderSeparator}
-        refreshControl={this.renderRefreshControl()}
-        onEndReached={this.onEndReached}
-      />
-    );
+    const { conversations } = this.props;
+    const { conversations: data = [] } = conversations;
+    if (conversations.loading) {
+      return <LoadingView />;
+    } else if (data.length > 0) {
+      const dataSource = this.ds.cloneWithRows(data);
+      return(
+        <ListView
+          showsVerticalScrollIndicator={false}
+          initialListSize={6}
+          onEndReachedThreshold={100}
+          enableEmptySections={false}
+          dataSource={dataSource}
+          renderRow={this.renderRow}
+          renderSeparator={this.renderSeparator}
+          refreshControl={this.renderRefreshControl()}
+          onEndReached={this.onEndReached}
+        />
+      );
+    }
+    return <NoData />;
   }
 }

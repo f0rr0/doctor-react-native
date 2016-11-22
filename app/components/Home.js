@@ -11,15 +11,20 @@ import {
 } from 'react-native';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import { connect } from 'react-redux';
-import actions from 'actions';
+import { startCase } from 'lodash-es';
+import AppBar from 'AppBar';
 import Drawer from 'Drawer';
 import TabView from 'react-native-scrollable-tab-view';
 import ConversationList from 'ConversationList';
-import AppBar from 'AppBar';
+import actions from 'actions';
 import colors from 'colors';
 import fonts from 'fonts';
 
 const styles = StyleSheet.create({
+  full: {
+    flex: 1,
+    backgroundColor: colors.white
+  },
   tabBarUnderlineStyle: {
     backgroundColor: colors.turquoise,
     height: 4
@@ -31,13 +36,14 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect(null)
+@connect(({ conversations, speciality }) => ({ conversations, speciality }))
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'new'
     }
+    this.tabs = ["new", "follow_up", "all"];
   }
 
   componentDidMount() {
@@ -49,7 +55,14 @@ export default class Home extends Component {
     this._drawer.open();
   }
 
+  onChangeTab = ({ i }) => {
+    this.setState({
+      selectedTab: this.tabs[i]
+    });
+  }
+
   render() {
+    const { conversations, speciality, category } = this.props;
     return (
       <Drawer ref={(ref) => { this._drawer = ref; }}>
         <StatusBar
@@ -73,12 +86,22 @@ export default class Home extends Component {
           tabBarInactiveTextColor={colors.darkGrey}
           tabBarUnderlineStyle={styles.tabBarUnderlineStyle}
           tabBarTextStyle={styles.tabBarTextStyle}
+          onChangeTab={this.onChangeTab}
         >
-          <View tabLabel="NEW">
-            <ConversationList />
-          </View>
-          <View tabLabel="FOLLOW UP" />
-          <View tabLabel="ALL" />
+          {this.tabs.map((label, index) =>
+            <View
+              key={index}
+              tabLabel={startCase(label).toUpperCase()}
+              style={styles.full}
+            >
+              <ConversationList
+                active={this.state.selectedTab === label}
+                speciality={speciality}
+                category={label}
+                conversations={conversations[label]}
+              />
+            </View>
+          )}
         </TabView>
       </Drawer>
     );
