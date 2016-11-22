@@ -39,14 +39,27 @@ export function conversationsReducer(conversations = {
       return Object.assign({}, conversations, {
         [category]: {
           ...current,
-          refreshing: !current.refreshing
+          refreshing: !current.refreshing,
+          error: false,
+          loading: false
         }
       });
     case 'TOGGLE_CONVERSATIONS_LOADING':
       return Object.assign({}, conversations, {
         [category]: {
           ...current,
-          loading: !current.loading
+          loading: !current.loading,
+          error: false,
+          refreshing: false
+        }
+      });
+    case 'TOGGLE_CONVERSATIONS_ERROR':
+      return Object.assign({}, conversations, {
+        [category]: {
+          ...current,
+          error: !current.error,
+          loading: false,
+          refreshing: false
         }
       });
     case 'SET_CONVERSATIONS':

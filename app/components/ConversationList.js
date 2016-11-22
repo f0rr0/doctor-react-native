@@ -8,6 +8,7 @@ import {
   ListView,
   RefreshControl,
   Text,
+  TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
   Platform
@@ -28,6 +29,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  errorText: {
+    color: colors.turquoise,
+    margin: 10
   }
 });
 
@@ -46,6 +51,15 @@ const NoData = () => (
   </View>
 );
 
+const ErrorData = ({ onPress }) => (
+  <View style={styles.full}>
+    <Text>Something went wrong</Text>
+    <TouchableOpacity onPress={onPress}>
+      <Text style={styles.errorText}>Try Again</Text>
+    </TouchableOpacity>
+  </View>
+);
+
 @connect(null)
 export default class ConversationList extends Component {
   constructor(props) {
@@ -55,7 +69,7 @@ export default class ConversationList extends Component {
 
   componentDidMount() {
     const { dispatch, conversations, category, active } = this.props;
-    if (!!!conversations.loading) {
+    if (!conversations.loading) {
       dispatch(actions.GET_CONVERSATIONS(category));
     }
   }
@@ -68,7 +82,7 @@ export default class ConversationList extends Component {
     const { dispatch, category, speciality } = this.props;
     if (nextProps.speciality !== speciality) {
       dispatch(actions.GET_CONVERSATIONS(category));
-    } else if (!this.props.active && nextProps.active && !!!nextProps.conversations.loading && !!!this.props.conversations.loading) {
+    } else if (!this.props.active && nextProps.active && !nextProps.conversations.loading && !this.props.conversations.loading) {
       dispatch(actions.GET_CONVERSATIONS(category));
     }
   }
@@ -89,7 +103,7 @@ export default class ConversationList extends Component {
 
   onRefresh = () => {
     const { dispatch, category, conversations } = this.props;
-    if (!!!conversations.loading && !!!conversations.refreshing) {
+    if (!conversations.loading && !conversations.refreshing) {
       dispatch(actions.REFRESH_CONVERSATIONS(category));
     }
   }
@@ -100,6 +114,13 @@ export default class ConversationList extends Component {
     const pgn = (data.length / 6) + 1;
     if (conversations.has_more) {
       dispatch(actions.LOAD_MORE_CONVERSATIONS(category, pgn));
+    }
+  }
+
+  onTryAgain = () => {
+    const { dispatch, category, conversations } = this.props;
+    if (!conversations.loading && !conversations.refreshing) {
+      dispatch(actions.GET_CONVERSATIONS(category));
     }
   }
 
@@ -123,6 +144,8 @@ export default class ConversationList extends Component {
           onEndReached={this.onEndReached}
         />
       );
+    } else if (conversations.error) {
+      return <ErrorData onPress={this.onTryAgain} />;
     }
     return <NoData />;
   }
