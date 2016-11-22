@@ -21,7 +21,9 @@ export default {
   SET_USER_SPECIALITY: (speciality) => createAction('SET_USER_SPECIALITY')(speciality),
   GET_CONVERSATIONS: (category, pgn) => createAction('GET_CONVERSATIONS')({ category, pgn }),
   REFRESH_CONVERSATIONS: (category, pgn) => createAction('REFRESH_CONVERSATIONS')({ category, pgn }),
+  LOAD_MORE_CONVERSATIONS: (category, pgn) => createAction('LOAD_MORE_CONVERSATIONS')({ category, pgn }),
   TOGGLE_CONVERSATIONS_LOADING: (category) => createAction('TOGGLE_CONVERSATIONS_LOADING')({ category }),
   TOGGLE_CONVERSATIONS_REFRESHING: (category) => createAction('TOGGLE_CONVERSATIONS_REFRESHING')({ category }),
-  SET_CONVERSATIONS: (category, data) => createAction('SET_CONVERSATIONS')({ category, data })
+  SET_CONVERSATIONS: (category, data) => createAction('SET_CONVERSATIONS')({ category, data }),
+  APPEND_CONVERSATIONS: (category, data) => createAction('APPEND_CONVERSATIONS')({ category, data })
 };

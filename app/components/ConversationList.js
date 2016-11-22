@@ -21,7 +21,7 @@ import fonts from 'fonts';
 
 const styles = StyleSheet.create({
   separator: {
-    height: StyleSheet.hairlineWidth,
+    height: 2 * StyleSheet.hairlineWidth,
     backgroundColor: colors.grey
   },
   full: {
@@ -95,7 +95,12 @@ export default class ConversationList extends Component {
   }
 
   onEndReached = () => {
-    console.log('load more')
+    const { conversations, dispatch, category } = this.props;
+    const { conversations: data = [] } = conversations;
+    const pgn = (data.length / 6) + 1;
+    if (conversations.has_more) {
+      dispatch(actions.LOAD_MORE_CONVERSATIONS(category, pgn));
+    }
   }
 
   render() {
@@ -109,7 +114,7 @@ export default class ConversationList extends Component {
         <ListView
           showsVerticalScrollIndicator={false}
           initialListSize={6}
-          onEndReachedThreshold={100}
+          onEndReachedThreshold={50}
           enableEmptySections={false}
           dataSource={dataSource}
           renderRow={this.renderRow}

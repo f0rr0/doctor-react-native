@@ -41,7 +41,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'new'
+      selectedTab: 0
     }
     this.tabs = ["new", "follow_up", "all"];
   }
@@ -57,12 +57,13 @@ export default class Home extends Component {
 
   onChangeTab = ({ i }) => {
     this.setState({
-      selectedTab: this.tabs[i]
+      selectedTab: i
     });
   }
 
   render() {
     const { conversations, speciality, category } = this.props;
+    const { selectedTab } = this.state;
     return (
       <Drawer ref={(ref) => { this._drawer = ref; }}>
         <StatusBar
@@ -87,6 +88,7 @@ export default class Home extends Component {
           tabBarUnderlineStyle={styles.tabBarUnderlineStyle}
           tabBarTextStyle={styles.tabBarTextStyle}
           onChangeTab={this.onChangeTab}
+          onScroll={this.onScroll}
         >
           {this.tabs.map((label, index) =>
             <View
@@ -95,7 +97,7 @@ export default class Home extends Component {
               style={styles.full}
             >
               <ConversationList
-                active={this.state.selectedTab === label}
+                active={selectedTab === index}
                 speciality={speciality}
                 category={label}
                 conversations={conversations[label]}

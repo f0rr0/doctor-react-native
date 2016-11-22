@@ -18,41 +18,53 @@ export function specialityReducer(speciality = {}, action) {
   return speciality;
 }
 
+const CONVERSATION_BASE_SHAPE = {
+  conversations: [],
+  loading: false,
+  refreshing: false,
+  error: false
+};
+
 export function conversationsReducer(conversations = {
-  new: {
-    conversations: []
-  },
-  follow_up: {
-    conversations: []
-  },
-  all: {
-    conversations: []
-  }
+  new: CONVERSATION_BASE_SHAPE,
+  follow_up: CONVERSATION_BASE_SHAPE,
+  all: CONVERSATION_BASE_SHAPE
 }, action) {
   const { payload = {}, type } = action;
-  const { category } = payload;
-  const current = conversations[category] || {};
+  const { category = 'new' } = payload;
+  const current = conversations[category];
+  const { data = {} } = payload;
   switch (type) {
     case 'TOGGLE_CONVERSATIONS_REFRESHING':
       return Object.assign({}, conversations, {
         [category]: {
           ...current,
-          refreshing: !!!current.refreshing
+          refreshing: !current.refreshing
         }
       });
     case 'TOGGLE_CONVERSATIONS_LOADING':
       return Object.assign({}, conversations, {
         [category]: {
           ...current,
-          loading: !!!current.loading
+          loading: !current.loading
         }
       });
     case 'SET_CONVERSATIONS':
-      const { data } = payload;
       return Object.assign({}, conversations, {
         [category]: {
           ...current,
           ...data
+        }
+      });
+    case 'APPEND_CONVERSATIONS':
+      return Object.assign({}, conversations, {
+        [category]: {
+          ...current,
+          ...data,
+          conversations: [
+            ...current.conversations,
+            ...data.conversations
+          ]
         }
       });
     default:
