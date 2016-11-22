@@ -20,10 +20,12 @@ export default async function refreshConversations({ action, dispatch, getState 
       dispatch(actions.TOGGLE_CONVERSATIONS_REFRESHING(category));
       dispatch(actions.SET_CONVERSATIONS(category, json));
     } else {
+      dispatch(actions.TOGGLE_CONVERSATIONS_REFRESHING(category));
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));
     }
   } catch ({ message }) {
+    dispatch(actions.TOGGLE_CONVERSATIONS_REFRESHING(category));
     if (message === 'Network request failed') {
       dispatch(actions.SHOW_LOCAL_ALERT('Looks like you are not connected to the internet. Please check the settings and try again.'));
     } else {

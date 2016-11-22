@@ -74,7 +74,7 @@ export default class ConversationList extends Component {
   }
 
   renderSeparator = (sectionID, rowID) =>
-    <View key={rowID} style={styles.separator} />;
+    <View key={rowID} style={styles.separator} />
 
   renderRow = (rowData, sectionID, rowID) =>
     <ConversationRow key={rowID} conversation={rowData} rowID={rowID} />;
@@ -85,18 +85,18 @@ export default class ConversationList extends Component {
       onRefresh={this.onRefresh}
       colors={[colors.turquoise]}
       tintColor={colors.turquoise}
-    />;
+    />
 
   onRefresh = () => {
     const { dispatch, category, conversations } = this.props;
     if (!!!conversations.loading && !!!conversations.refreshing) {
       dispatch(actions.REFRESH_CONVERSATIONS(category));
     }
-  };
+  }
 
   onEndReached = () => {
     console.log('load more')
-  };
+  }
 
   render() {
     const { conversations } = this.props;

@@ -20,30 +20,6 @@ import fonts from 'fonts';
 import { connect } from 'react-redux';
 import actions from 'actions';
 
-// {
-//   "specialities": [
-//     {
-//       "second_opinion_id": 4,
-//       "status": "deleted",
-//       "name": "Skin Specialist",
-//       "new_queries_count": 0
-//     },
-//     {
-//       "second_opinion_id": 6,
-//       "status": "deleted",
-//       "name": "General Physician",
-//       "new_queries_count": 0
-//     }
-//   ],
-//   "total_count": 2,
-//   "doctor_info": {
-//     "name": "Dr. Demo Account",
-//     "profile_pic": null,
-//     "email": null,
-//     "speciality": "Dermatology"
-//   }
-// }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
