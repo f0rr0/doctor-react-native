@@ -137,6 +137,7 @@ function DrawerNavigationView({ close, user, speciality, dispatch }) {
   const itemGroupOne = [
     {
       text: 'Spam',
+      onPress: () => dispatch(actions.GO_TO_ROUTE('spam'))
     },
     {
       text: 'Change Password',

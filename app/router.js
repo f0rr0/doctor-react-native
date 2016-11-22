@@ -10,6 +10,7 @@ import ChangePassword from 'ChangePassword';
 import SendOTP from 'SendOTP';
 import VerifyOTP from 'VerifyOTP';
 import Home from 'Home';
+import Spam from 'Spam';
 import AboutUs from 'AboutUs';
 import ContactUs from 'ContactUs';
 import Profile from 'Profile';
@@ -22,6 +23,7 @@ export default createRouter(() => ({
   verifyOTP: () => VerifyOTP,
   changePassword: () => ChangePassword,
   home: () => Home,
+  spam: () => Spam,
   about: () => AboutUs,
   contact: () => ContactUs,
   profile: () => Profile

@@ -79,10 +79,10 @@ export default class ConversationList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, category, speciality } = this.props;
+    const { dispatch, category, speciality, conversations, active } = this.props;
     if (nextProps.speciality !== speciality) {
       dispatch(actions.GET_CONVERSATIONS(category));
-    } else if (!this.props.active && nextProps.active && !nextProps.conversations.loading && !this.props.conversations.loading) {
+    } else if (!active && nextProps.active && !nextProps.conversations.loading && !conversations.loading) {
       dispatch(actions.GET_CONVERSATIONS(category));
     }
   }

@@ -30,7 +30,7 @@ export function configureStore(onComplete = () => {}) {
     enhancer
   );
   persistStore(store, {
-    blacklist: ['navigation'],
+    blacklist: ['navigation', 'conversations'],
     storage: AsyncStorage
   }, onComplete);
   return store;

@@ -28,10 +28,11 @@ const CONVERSATION_BASE_SHAPE = {
 export function conversationsReducer(conversations = {
   new: CONVERSATION_BASE_SHAPE,
   follow_up: CONVERSATION_BASE_SHAPE,
-  all: CONVERSATION_BASE_SHAPE
+  all: CONVERSATION_BASE_SHAPE,
+  spam: CONVERSATION_BASE_SHAPE
 }, action) {
   const { payload = {}, type } = action;
-  const { category = 'new' } = payload;
+  const { category } = payload;
   const current = conversations[category];
   const { data = {} } = payload;
   switch (type) {
