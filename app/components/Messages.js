@@ -163,8 +163,7 @@ export default class Messages extends Component {
     text: message.text,
     createdAt: parseStupidDateToISO(message.date, message.time),
     user: {
-      _id: message.user_type === 'doctor' ? 1 : 2,
-      name: message.user_type === 'doctor' ? user.name : conversation.patient_name
+      _id: message.user_type
     },
     image: message.user_attachments.length > 0 ? message.user_attachments[0].image.image.thumb.url : ''
   })
@@ -175,6 +174,8 @@ export default class Messages extends Component {
     const content = (() => {
       if (messages.loading) {
         return <LoadingView />;
+      } else if (messages.error) {
+        return <ErrorData onPress={this.onTryAgain} />;
       } else if (data.length > 0) {
         return (
           <GiftedChat
@@ -186,13 +187,11 @@ export default class Messages extends Component {
             messages={data.map(this.mapWithContext(user, conversation))}
             onSend={(messages = []) => console.log(messages)}
             user={{
-              _id: 1,
+              _id: 'doctor',
               name: user.name
             }}
           />
         );
-      } else if (messages.error) {
-        return <ErrorData onPress={this.onTryAgain} />;
       }
     })();
     return (
