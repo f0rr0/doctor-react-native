@@ -11,7 +11,9 @@ import {
   StyleSheet,
   Platform
 } from 'react-native';
-import { memoize } from 'lodash';
+import { connect } from 'react-redux';
+import { memoize } from 'lodash-es';
+import actions from 'actions';
 import colors from 'colors';
 import fonts from 'fonts';
 
@@ -98,7 +100,7 @@ const Touchable = ({ children, onPress }) => {
   );
 };
 
-export default function ConversationRow({ conversation, rowID }) {
+function ConversationRow({ conversation, rowID, dispatch }) {
   const getAvatarColor = memoize((rowID) => {
     const rem = rowID % 6;
     switch (rem) {
@@ -110,8 +112,14 @@ export default function ConversationRow({ conversation, rowID }) {
       case 5: return colors.mediumGrey;
     }
   });
+
+  const onPress = () => {
+    dispatch(actions.GET_MESSAGES(conversation));
+    dispatch(actions.GO_TO_ROUTE('messages', conversation));
+  }
+
   return(
-    <Touchable onPress={() => {}}>
+    <Touchable onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.timestamp}>
           <Text style={styles.textTimestamp}>
@@ -153,3 +161,5 @@ export default function ConversationRow({ conversation, rowID }) {
     </Touchable>
   );
 }
+
+export default connect(null)(ConversationRow);

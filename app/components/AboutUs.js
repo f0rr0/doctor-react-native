@@ -9,10 +9,12 @@ import {
   StyleSheet
 } from 'react-native';
 import AppBar from 'AppBar';
+import colors from 'colors';
 
 const styles = StyleSheet.create({
   full: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.white
   }
 });
 

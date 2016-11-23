@@ -18,6 +18,7 @@ import getUserInfo from 'getUserInfo';
 import getConversations from 'getConversations';
 import refreshConversations from 'refreshConversations';
 import loadMoreConversations from 'loadMoreConversations';
+import getMessages from 'getMessages';
 
 function genericErrorHandler({ action, error }) {
   console.log({error, action});
@@ -97,6 +98,11 @@ export default [
   {
     action: actions.LOAD_MORE_CONVERSATIONS().type,
     effect: loadMoreConversations,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.GET_MESSAGES().type,
+    effect: getMessages,
     error: genericErrorHandler
   }
 ];

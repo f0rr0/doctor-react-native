@@ -7,7 +7,7 @@ import { createAction } from 'redux-actions';
 export default {
   GO_BACK: createAction('GO_BACK')(),
   CLEAR_ROUTE_STACK: (route) => createAction('CLEAR_ROUTE_STACK')({ route }),
-  GO_TO_ROUTE: (route) => createAction('GO_TO_ROUTE')({ route }),
+  GO_TO_ROUTE: (route, params) => createAction('GO_TO_ROUTE')({ route, params }),
   SHOW_MODAL_ACTIVITY: (text) => createAction('SHOW_MODAL_ACTIVITY')({ text }),
   SHOW_MODAL_DIALOG: (type, onConfirm) => createAction('SHOW_MODAL_DIALOG')({ type, onConfirm }),
   SHOW_LOCAL_ALERT: (message) => createAction('SHOW_LOCAL_ALERT')({ message }),
@@ -26,5 +26,9 @@ export default {
   TOGGLE_CONVERSATIONS_REFRESHING: (category) => createAction('TOGGLE_CONVERSATIONS_REFRESHING')({ category }),
   TOGGLE_CONVERSATIONS_ERROR: (category) => createAction('TOGGLE_CONVERSATIONS_ERROR')({ category }),
   SET_CONVERSATIONS: (category, data) => createAction('SET_CONVERSATIONS')({ category, data }),
-  APPEND_CONVERSATIONS: (category, data) => createAction('APPEND_CONVERSATIONS')({ category, data })
+  APPEND_CONVERSATIONS: (category, data) => createAction('APPEND_CONVERSATIONS')({ category, data }),
+  GET_MESSAGES: (conversation) => createAction('GET_MESSAGES')({ conversation }),
+  TOGGLE_MESSAGES_LOADING: createAction('TOGGLE_MESSAGES_LOADING')(),
+  TOGGLE_MESSAGES_ERROR: createAction('TOGGLE_MESSAGES_ERROR')(),
+  SET_MESSAGES: (messages) => createAction('SET_MESSAGES')({ messages })
 };

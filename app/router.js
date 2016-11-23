@@ -14,6 +14,7 @@ import Spam from 'Spam';
 import AboutUs from 'AboutUs';
 import ContactUs from 'ContactUs';
 import Profile from 'Profile';
+import Messages from 'Messages';
 
 export default createRouter(() => ({
   modalActivity: () => BlockingModalActivity,
@@ -26,7 +27,8 @@ export default createRouter(() => ({
   spam: () => Spam,
   about: () => AboutUs,
   contact: () => ContactUs,
-  profile: () => Profile
+  profile: () => Profile,
+  messages: () => Messages
 }), {
   ignoreSerializableWarnings: true
 });

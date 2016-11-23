@@ -85,3 +85,29 @@ export function conversationsReducer(conversations = {
       return conversations;
   }
 }
+
+const MESSAGES_BASE_SHAPE = {
+  messages: [],
+  loading: false,
+  error: false
+};
+
+export function messagesReducer(messages = MESSAGES_BASE_SHAPE, action) {
+  const { payload = {}, type } = action;
+  switch (type) {
+    case 'TOGGLE_MESSAGES_LOADING':
+      return Object.assign({}, messages, {
+        loading: !messages.loading,
+        error: false
+      });
+    case 'TOGGLE_MESSAGES_ERROR':
+      return Object.assign({}, messages, {
+        error: !messages.error,
+        loading: false
+      });
+    case 'SET_MESSAGES':
+      return Object.assign({}, messages, payload.messages);
+    default:
+      return messages;
+  }
+}

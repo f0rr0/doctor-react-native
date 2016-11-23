@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 export default Platform.OS === 'ios' ? {
   regular: 'AvenirNext-Regular',
   medium: 'AvenirNext-Medium',
-  light: 'AvenirNext-Light'
+  light: 'AvenirNext-UltraLight'
 } : {
   regular: 'sans-serif',
   medium: 'sans-serif-medium',
