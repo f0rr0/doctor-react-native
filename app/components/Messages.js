@@ -2,7 +2,7 @@
  * @providesModule Messages
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -19,7 +19,6 @@ import {
   Time,
   Message
 } from 'react-native-gifted-chat';
-import deepEqual from 'deep-equal';
 import { connect } from 'react-redux';
 import actions from 'actions';
 import colors from 'colors';
@@ -43,11 +42,13 @@ const styles = StyleSheet.create({
 const bubbleStyles = StyleSheet.create({
   left: {
     backgroundColor: colors.flashWhite,
-    borderRadius: 15
+    borderRadius: 15,
+    borderBottomLeftRadius: 0
   },
   right: {
     backgroundColor: colors.lightTurquoise,
-    borderRadius: 15
+    borderRadius: 15,
+    borderBottomRightRadius : 0
   }
 });
 
@@ -111,7 +112,7 @@ const ErrorData = ({ onPress = () => {} }) => (
 );
 
 @connect(({ messages, user }) => ({ messages, user }))
-export default class Messages extends Component {
+export default class Messages extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -186,10 +187,7 @@ export default class Messages extends Component {
             renderBubble={this.renderBubble}
             messages={data.map(this.mapWithContext(user, conversation))}
             onSend={(messages = []) => console.log(messages)}
-            user={{
-              _id: 'doctor',
-              name: user.name
-            }}
+            user={{ _id: 'doctor' }}
           />
         );
       }

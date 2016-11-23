@@ -2,7 +2,7 @@
  * @providesModule ConversationList
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   ListView,
@@ -14,7 +14,7 @@ import {
   Platform
 } from 'react-native';
 import { connect } from 'react-redux';
-import deepEqual from 'deep-equal';
+// import deepEqual from 'deep-equal';
 import ConversationRow from 'ConversationRow';
 import actions from 'actions';
 import colors from 'colors';
@@ -61,7 +61,7 @@ const ErrorData = ({ onPress }) => (
 );
 
 @connect(null)
-export default class ConversationList extends Component {
+export default class ConversationList extends PureComponent {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
@@ -74,9 +74,9 @@ export default class ConversationList extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !deepEqual(nextProps.conversations, this.props.conversations);
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return !deepEqual(nextProps.conversations, this.props.conversations);
+  // }
 
   componentWillReceiveProps(nextProps) {
     const { dispatch, category, speciality, conversations, active } = this.props;

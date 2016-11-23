@@ -2,7 +2,7 @@
  * @providesModule Home
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Text,
   StatusBar,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(({ conversations, speciality }) => ({ conversations, speciality }))
-export default class Home extends Component {
+export default class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

@@ -2,7 +2,7 @@
  * @providesModule SendOTP
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(({ user }) => ({ user }))
-export default class SendOTP extends Component {
+export default class SendOTP extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
