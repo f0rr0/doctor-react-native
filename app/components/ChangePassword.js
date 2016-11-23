@@ -2,7 +2,7 @@
  * @providesModule ChangePassword
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(null)
-export default class ChangePassword extends Component {
+export default class ChangePassword extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

@@ -2,7 +2,7 @@
  * @providesModule DoctorApp
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { StatusBar } from 'react-native';
 import {
   NavigationContext,
@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 import router from 'router';
 import configureStore from 'store';
 
-export default class doctorApp extends Component {
+export default class doctorApp extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
