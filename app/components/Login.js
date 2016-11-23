@@ -2,7 +2,7 @@
  * @providesModule Login
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   StatusBar,
   View,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(({ user }) => ({ user }))
-export default class Login extends Component {
+export default class Login extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

@@ -2,7 +2,7 @@
  * @providesModule Drawer
  */
 
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import DrawerLayout from 'react-native-drawer-layout';
 import {
   Text,
@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import DrawerNavigationView from 'DrawerNavigationView';
 
-export default class Drawer extends Component {
+export default class Drawer extends PureComponent {
   open = () => {
     this._drawer.openDrawer();
   }

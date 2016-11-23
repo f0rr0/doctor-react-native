@@ -2,7 +2,7 @@
  * @providesModule VerifyOTP
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(({ user }) => ({ user }))
-export default class VerifyOTP extends Component {
+export default class VerifyOTP extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
