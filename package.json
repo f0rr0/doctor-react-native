@@ -12,7 +12,7 @@
     "lodash-es": "^4.17.2",
     "moment": "^2.17.0",
     "react": "15.3.2",
-    "react-native": "0.36.1",
+    "react-native": "0.38.0",
     "react-native-drawer-layout": "^1.1.0",
     "react-native-gifted-chat": "^0.0.10",
     "react-native-md-textinput-1mg": "^2.0.8",
