@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
 
 const bubbleStyles = StyleSheet.create({
   left: {
-    backgroundColor: colors.flashWhite,
+    backgroundColor: colors.lightTurquoise,
     borderRadius: 15,
     borderBottomLeftRadius: 0
   },
   right: {
-    backgroundColor: colors.lightTurquoise,
+    backgroundColor: colors.flashWhite,
     borderRadius: 15,
     borderBottomRightRadius : 0
   }
