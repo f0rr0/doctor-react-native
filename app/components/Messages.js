@@ -106,6 +106,8 @@ const inputToolbarStyles = StyleSheet.create({
     borderTopColor: colors.grey,
   },
   statusText: {
+    alignSelf: 'stretch',
+    marginHorizontal: 8,
     color: colors.dirtyBrown,
     fontFamily: fonts.regular,
     fontSize: 12,
