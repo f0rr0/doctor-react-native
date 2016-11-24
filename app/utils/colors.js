@@ -18,5 +18,7 @@ export default {
   purple: '#8e44ad',
   blue: '#3498db',
   lightTurquoise: '#c9f2f4',
-  flashWhite: '#f2f2f2'
+  flashWhite: '#f2f2f2',
+  paleYellow: 'rgba(247, 186, 62, 0.2)',
+  dirtyBrown: '#997b3d'
 };

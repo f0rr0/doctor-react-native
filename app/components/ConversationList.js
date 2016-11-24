@@ -14,7 +14,6 @@ import {
   Platform
 } from 'react-native';
 import { connect } from 'react-redux';
-// import deepEqual from 'deep-equal';
 import ConversationRow from 'ConversationRow';
 import actions from 'actions';
 import colors from 'colors';
@@ -73,10 +72,6 @@ export default class ConversationList extends PureComponent {
       dispatch(actions.GET_CONVERSATIONS(category));
     }
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return !deepEqual(nextProps.conversations, this.props.conversations);
-  // }
 
   componentWillReceiveProps(nextProps) {
     const { dispatch, category, speciality, conversations, active } = this.props;

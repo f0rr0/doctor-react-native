@@ -89,7 +89,8 @@ export function conversationsReducer(conversations = {
 const MESSAGES_BASE_SHAPE = {
   messages: [],
   loading: false,
-  error: false
+  error: false,
+  loading_more: false
 };
 
 export function messagesReducer(messages = MESSAGES_BASE_SHAPE, action) {
@@ -98,15 +99,30 @@ export function messagesReducer(messages = MESSAGES_BASE_SHAPE, action) {
     case 'TOGGLE_MESSAGES_LOADING':
       return Object.assign({}, messages, {
         loading: !messages.loading,
-        error: false
+        error: false,
+        loading_more: false
       });
     case 'TOGGLE_MESSAGES_ERROR':
       return Object.assign({}, messages, {
         error: !messages.error,
+        loading: false,
+        loading_more: false
+      });
+    case 'TOGGLE_MESSAGES_LOADING_MORE':
+      return Object.assign({}, messages, {
+        loading_more: !messages.loading_more,
+        error: false,
         loading: false
       });
     case 'SET_MESSAGES':
       return Object.assign({}, messages, payload.messages);
+    case 'APPEND_MESSAGES':
+      return Object.assign({}, messages, payload.messages, {
+        messages: [
+          ...messages.messages,
+          ...payload.messages.messages
+        ]
+      });
     default:
       return messages;
   }

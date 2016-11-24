@@ -28,7 +28,10 @@ export default {
   SET_CONVERSATIONS: (category, data) => createAction('SET_CONVERSATIONS')({ category, data }),
   APPEND_CONVERSATIONS: (category, data) => createAction('APPEND_CONVERSATIONS')({ category, data }),
   GET_MESSAGES: (conversation) => createAction('GET_MESSAGES')({ conversation }),
+  LOAD_MORE_MESSAGES: (conversation, pgn) => createAction('LOAD_MORE_MESSAGES')({ conversation, pgn }),
   TOGGLE_MESSAGES_LOADING: createAction('TOGGLE_MESSAGES_LOADING')(),
   TOGGLE_MESSAGES_ERROR: createAction('TOGGLE_MESSAGES_ERROR')(),
-  SET_MESSAGES: (messages) => createAction('SET_MESSAGES')({ messages })
+  SET_MESSAGES: (messages) => createAction('SET_MESSAGES')({ messages }),
+  TOGGLE_MESSAGES_LOADING_MORE: createAction('TOGGLE_MESSAGES_LOADING_MORE')(),
+  APPEND_MESSAGES: (messages) => createAction('APPEND_MESSAGES')({ messages })
 };

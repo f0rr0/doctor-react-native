@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@exponent/ex-navigation": "^2.1.0",
-    "deep-equal": "^1.0.1",
     "lodash-es": "^4.17.2",
     "moment": "^2.17.0",
     "react": "15.3.2",

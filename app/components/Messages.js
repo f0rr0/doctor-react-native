@@ -6,6 +6,7 @@ import React, { PureComponent } from 'react';
 import {
   View,
   Text,
+  Image,
   ActivityIndicator,
   TouchableOpacity,
   StyleSheet,
@@ -17,7 +18,8 @@ import {
   Bubble,
   MessageText,
   Time,
-  Message
+  Message,
+  InputToolbar
 } from 'react-native-gifted-chat';
 import { connect } from 'react-redux';
 import actions from 'actions';
@@ -28,6 +30,7 @@ import { parseStupidDateToISO } from 'date';
 const styles = StyleSheet.create({
   full: {
     flex: 1,
+    backgroundColor: colors.white
   },
   center: {
     justifyContent: 'center',
@@ -93,6 +96,38 @@ const messageContainerStyles = StyleSheet.create({
   }
 });
 
+const inputToolbarStyles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.paleYellow,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 44,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.grey,
+  },
+  statusText: {
+    color: colors.dirtyBrown,
+    fontFamily: fonts.regular,
+    fontSize: 12,
+    fontStyle: 'italic'
+  }
+});
+
+const sendStyles = StyleSheet.create({
+  container: {
+    height: 44,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  button: {
+    width: 20,
+    height: 20,
+    marginBottom: 12,
+    marginLeft: 10,
+    marginRight: 10
+  }
+});
+
 const LoadingView = () => (
   <View style={[ styles.full, styles.center ]}>
     <ActivityIndicator
@@ -115,22 +150,6 @@ const ErrorData = ({ onPress = () => {} }) => (
 export default class Messages extends PureComponent {
   constructor(props) {
     super(props);
-  }
-
-  // shouldComponentUpdate({ messages: nextMessages, params: nextConversation }) {
-  //   const { messages, params: conversation } = this.props;
-  //   if (nextMessages.messages.length !== messages.messages.length || nextConversation.id !== conversation.id || nextMessages.loading !== messages.loading) {
-  //     console.log('update');
-  //     return true;
-  //   };
-  //   return false;
-  // }
-
-  onTryAgain = () => {
-    const { dispatch, messages, params: conversation } = this.props;
-    if (!messages.loading) {
-      dispatch(actions.GET_MESSAGES(conversation));
-    }
   }
 
   renderMessage = props =>
@@ -159,6 +178,30 @@ export default class Messages extends PureComponent {
       renderTime={this.renderTime}
     />
 
+  renderInputToolbar = messages => props => {
+    const { status } = messages;
+    if (status.status === 'closed') {
+      return (
+        <View style={inputToolbarStyles.container}>
+          <Text style={inputToolbarStyles.statusText}>{status.message}</Text>
+        </View>
+      );
+    }
+    return <InputToolbar {...props} />;
+  }
+
+  renderSend = props =>
+    <TouchableOpacity
+      onPress={() => props.onSend({text: props.text.trim()}, true)}
+      accessibilityTraits="button"
+      style={sendStyles.container}
+    >
+      <Image
+        source={require('../assets/drawable-xxhdpi/fill_31.png')}
+        style={sendStyles.button}
+      />
+    </TouchableOpacity>
+
   mapWithContext = (user, conversation) => (message) => ({
     _id: message.id,
     text: message.text,
@@ -169,9 +212,29 @@ export default class Messages extends PureComponent {
     image: message.user_attachments.length > 0 ? message.user_attachments[0].image.image.thumb.url : ''
   })
 
+  onTryAgain = () => {
+    const { dispatch, messages, params: conversation } = this.props;
+    if (!messages.loading && !messages.loading_more) {
+      dispatch(actions.GET_MESSAGES(conversation));
+    }
+  }
+
+  onLoadEarlier = () => {
+    const { dispatch, messages, params: conversation } = this.props;
+    if (!messages.loading && !messages.loading_more) {
+      const pgn = (messages.messages.length / 6) + 1;
+      dispatch(actions.LOAD_MORE_MESSAGES(conversation, pgn));
+    }
+  }
+
+  handleMarkSpam = () => {
+    const { dispatch, params: { id } } = this.props;
+    dispatch(actions.SHOW_MODAL_DIALOG('mark_spam', () => console.log(id)));
+  }
+
   render() {
     const { params: conversation, messages, user } = this.props;
-    const { messages: data = [] } = messages;
+    const { messages: data } = messages;
     const content = (() => {
       if (messages.loading) {
         return <LoadingView />;
@@ -182,9 +245,13 @@ export default class Messages extends PureComponent {
           <GiftedChat
             isAnimated
             loadEarlier={messages.has_more}
+            onLoadEarlier={this.onLoadEarlier}
+            isLoadingEarlier={messages.loading_more}
             renderMessage={this.renderMessage}
             renderAvatar={() => null}
             renderBubble={this.renderBubble}
+            renderSend={this.renderSend}
+            renderInputToolbar={this.renderInputToolbar(messages)}
             messages={data.map(this.mapWithContext(user, conversation))}
             onSend={(messages = []) => console.log(messages)}
             user={{ _id: 'doctor' }}
@@ -199,7 +266,7 @@ export default class Messages extends PureComponent {
           subTitle={`${conversation.patient_age}, ${conversation.patient_gender}`}
           rightTouchButtons={[{
             icon: require('../assets/drawable-xxhdpi/flag_icon.png'),
-            onPress: () => console.log('mark as spam'),
+            onPress: this.handleMarkSpam,
             style: {
               height: 18,
               width: 14
