@@ -32,6 +32,19 @@ const styles = StyleSheet.create({
   errorText: {
     color: colors.turquoise,
     margin: 10
+  },
+  footer: {
+    height: 41,
+    backgroundColor: colors.jet,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  footerText: {
+    alignSelf: 'stretch',
+    marginHorizontal: 8,
+    color: colors.white,
+    fontFamily: fonts.regular,
+    fontSize: 14
   }
 });
 
@@ -88,6 +101,17 @@ export default class ConversationList extends PureComponent {
   renderRow = (rowData, sectionID, rowID) =>
     <ConversationRow key={rowID} conversation={rowData} rowID={rowID} />;
 
+  renderFooter = (conversations) => () => {
+    if (conversations.loading_more) {
+      return (
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Loading...</Text>
+        </View>
+      );
+    }
+    return null;
+  }
+
   renderRefreshControl = () =>
     <RefreshControl
       refreshing={!!this.props.conversations.refreshing}
@@ -135,6 +159,7 @@ export default class ConversationList extends PureComponent {
           dataSource={dataSource}
           renderRow={this.renderRow}
           renderSeparator={this.renderSeparator}
+          // renderFooter={this.renderFooter(conversations)}
           refreshControl={this.renderRefreshControl()}
           onEndReached={this.onEndReached}
         />

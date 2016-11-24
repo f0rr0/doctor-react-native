@@ -111,7 +111,8 @@ const inputToolbarStyles = StyleSheet.create({
     color: colors.dirtyBrown,
     fontFamily: fonts.regular,
     fontSize: 12,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    textAlign: 'center'
   }
 });
 

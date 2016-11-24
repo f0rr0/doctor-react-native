@@ -9,6 +9,7 @@ import { generateGetRequest } from 'networking';
 
 export default async function loadMoreConversations({ action, dispatch, getState }) {
   const { category, pgn = 1 } = action.payload;
+  dispatch(actions.TOGGLE_CONVERSATIONS_LOADING_MORE(category));
   const { user, speciality } = getState();
   const { second_opinion_id } = speciality;
   const request = generateGetRequest(`https://stagapi.1mgdoctors.com/api/doctor/all_conversations?second_opinion_id=${second_opinion_id}&category=${category}&ppg=6&pgn=${pgn}`, user);
@@ -16,12 +17,15 @@ export default async function loadMoreConversations({ action, dispatch, getState
     const response = await fetch(request);
     const json = await response.json();
     if (!json.error) {
+      dispatch(actions.TOGGLE_CONVERSATIONS_LOADING_MORE(category));
       dispatch(actions.APPEND_CONVERSATIONS(category, json));
     } else {
+      dispatch(actions.TOGGLE_CONVERSATIONS_LOADING_MORE(category));
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));
     }
   } catch ({ message }) {
+    dispatch(actions.TOGGLE_CONVERSATIONS_LOADING_MORE(category));
     if (message === 'Network request failed') {
       dispatch(actions.SHOW_LOCAL_ALERT('Looks like you are not connected to the internet. Please check the settings and try again.'));
     } else {

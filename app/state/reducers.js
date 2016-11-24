@@ -21,6 +21,7 @@ export function specialityReducer(speciality = {}, action) {
 const CONVERSATION_BASE_SHAPE = {
   conversations: [],
   loading: false,
+  loading_more: false,
   refreshing: false,
   error: false
 };
@@ -42,7 +43,8 @@ export function conversationsReducer(conversations = {
           ...current,
           refreshing: !current.refreshing,
           error: false,
-          loading: false
+          loading: false,
+          loading_more: false
         }
       });
     case 'TOGGLE_CONVERSATIONS_LOADING':
@@ -51,7 +53,18 @@ export function conversationsReducer(conversations = {
           ...current,
           loading: !current.loading,
           error: false,
-          refreshing: false
+          refreshing: false,
+          loading_more: false
+        }
+      });
+    case 'TOGGLE_CONVERSATIONS_LOADING_MORE':
+      return Object.assign({}, conversations, {
+        [category]: {
+          ...current,
+          error: false,
+          loading: false,
+          refreshing: false,
+          loading_more: !current.loading_more
         }
       });
     case 'TOGGLE_CONVERSATIONS_ERROR':
@@ -60,7 +73,8 @@ export function conversationsReducer(conversations = {
           ...current,
           error: !current.error,
           loading: false,
-          refreshing: false
+          refreshing: false,
+          loading_more: false
         }
       });
     case 'SET_CONVERSATIONS':

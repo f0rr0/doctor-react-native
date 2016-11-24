@@ -23,6 +23,7 @@ export default {
   REFRESH_CONVERSATIONS: (category, pgn) => createAction('REFRESH_CONVERSATIONS')({ category, pgn }),
   LOAD_MORE_CONVERSATIONS: (category, pgn) => createAction('LOAD_MORE_CONVERSATIONS')({ category, pgn }),
   TOGGLE_CONVERSATIONS_LOADING: (category) => createAction('TOGGLE_CONVERSATIONS_LOADING')({ category }),
+  TOGGLE_CONVERSATIONS_LOADING_MORE: (category) => createAction('TOGGLE_CONVERSATIONS_LOADING_MORE')({ category }),
   TOGGLE_CONVERSATIONS_REFRESHING: (category) => createAction('TOGGLE_CONVERSATIONS_REFRESHING')({ category }),
   TOGGLE_CONVERSATIONS_ERROR: (category) => createAction('TOGGLE_CONVERSATIONS_ERROR')({ category }),
   SET_CONVERSATIONS: (category, data) => createAction('SET_CONVERSATIONS')({ category, data }),
