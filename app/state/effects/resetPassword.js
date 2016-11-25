@@ -1,24 +1,22 @@
 /**
- * @providesModule verifyOTP
+ * @providesModule resetPassword
  */
 
 import { NavigationActions } from '@exponent/ex-navigation';
 import router from 'router';
 import actions from 'actions';
-import { generateUnauthenticatedPostRequest } from 'networking';
+import { generatePostRequest } from 'networking';
 
-export default async function verifyOTP({ action, dispatch, nextDispatchAsync, getState }) {
-  dispatch(actions.SHOW_MODAL_ACTIVITY('Verifying...'));
-  const { phone_number } = getState().user;
-  const request = generateUnauthenticatedPostRequest('https://stagapi.1mgdoctors.com/api/doctor/verify_otp', {
-    phone_number,
-    otp: action.payload
-  });
+export default async function resetPassword({ action, dispatch, getState }) {
+  dispatch(actions.SHOW_MODAL_ACTIVITY('Resetting password...'));
+  const { user } = getState();
+  const request = generatePostRequest('https://stagapi.1mgdoctors.com/api/doctor/reset_password', action.payload, user);
   try {
     const response = await fetch(request);
     const json = await response.json();
     if (json.success) {
-      dispatch(actions.GO_TO_ROUTE('resetPassword', json.reset_token));
+      dispatch(actions.SHOW_LOCAL_ALERT(json.success));
+      dispatch(actions.GO_TO_ROUTE('login'));
     } else {
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));

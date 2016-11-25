@@ -12,6 +12,7 @@ import showLocalAlert from 'showLocalAlert';
 import signIn from 'signIn';
 import signOut from 'signOut';
 import changePassword from 'changePassword';
+import resetPassword from 'resetPassword';
 import sendOTP from 'sendOTP';
 import verifyOTP from 'verifyOTP';
 import getUserInfo from 'getUserInfo';
@@ -69,6 +70,11 @@ export default [
   {
     action: actions.CHANGE_PASSWORD().type,
     effect: changePassword,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.RESET_PASSWORD().type,
+    effect: resetPassword,
     error: genericErrorHandler
   },
   {

@@ -7,6 +7,7 @@ import BlockingModalActivity from 'BlockingModalActivity';
 import BlockingModalDialog from 'BlockingModalDialog';
 import Login from 'Login';
 import ChangePassword from 'ChangePassword';
+import ResetPassword from 'ResetPassword';
 import SendOTP from 'SendOTP';
 import VerifyOTP from 'VerifyOTP';
 import Home from 'Home';
@@ -23,6 +24,7 @@ export default createRouter(() => ({
   sendOTP: () => SendOTP,
   verifyOTP: () => VerifyOTP,
   changePassword: () => ChangePassword,
+  resetPassword: () => ResetPassword,
   home: () => Home,
   spam: () => Spam,
   about: () => AboutUs,
