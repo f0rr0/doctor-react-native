@@ -174,7 +174,7 @@ function DrawerNavigationView({ close, user, speciality, dispatch }) {
               }}
             >
             <Image
-              source={user.profile_pic || require('../assets/drawable-xxhdpi/blank_avatar.png')}
+              source={{ uri: user.profile_pic } || require('../assets/drawable-xxhdpi/blank_avatar.png')}
               style={styles.profilePic}
             />
           </TouchableOpacity>

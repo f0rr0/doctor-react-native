@@ -10,6 +10,11 @@ react-native run-ios
 react-native run-android
 ```
 
+#### App State
+This app uses `redux` for state management, `react-redux` for bindings, `redux-actions` for FSA compliant actions, `redux-effex` for async side effects and `redux-persist` for persisting state to `AsyncStorage`.
+
+![Sample App State Visualized](./screenshots/ReduxAppState.png)
+
 #### Screenshots
 
 | Current       | RN Android | RN iOS |

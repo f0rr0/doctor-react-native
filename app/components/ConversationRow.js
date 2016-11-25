@@ -16,6 +16,8 @@ import { memoize } from 'lodash-es';
 import actions from 'actions';
 import colors from 'colors';
 import fonts from 'fonts';
+import moment from 'moment';
+import { fromNow } from 'date';
 
 const styles = StyleSheet.create({
   container: {
@@ -100,30 +102,29 @@ const Touchable = ({ children, onPress }) => {
   );
 };
 
-function ConversationRow({ conversation, rowID, dispatch }) {
-  const getAvatarColor = memoize((rowID) => {
-    const rem = rowID % 6;
-    switch (rem) {
-      case 0: return colors.green;
-      case 1: return colors.yellow;
-      case 2: return colors.red;
-      case 3: return colors.purple;
-      case 4: return colors.blue;
-      case 5: return colors.mediumGrey;
-    }
-  });
+const getAvatarColor = memoize((rowID) => {
+  const rem = rowID % 6;
+  switch (rem) {
+    case 0: return colors.green;
+    case 1: return colors.yellow;
+    case 2: return colors.red;
+    case 3: return colors.purple;
+    case 4: return colors.blue;
+    case 5: return colors.mediumGrey;
+  }
+});
 
+function ConversationRow({ conversation, rowID, dispatch }) {
   const onPress = () => {
     dispatch(actions.GET_MESSAGES(conversation));
     dispatch(actions.GO_TO_ROUTE('messages', conversation));
-  }
-
+  };
   return(
     <Touchable onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.timestamp}>
           <Text style={styles.textTimestamp}>
-            {conversation.date}
+            {fromNow(conversation.date, conversation.time)}
           </Text>
         </View>
         <View style={[ styles.avatar, {
