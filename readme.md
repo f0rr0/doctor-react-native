@@ -1,3 +1,6 @@
+#### [Who's using React Native](https://facebook.github.io/react-native/showcase.html)
+We are in good company.
+
 #### Package Manager
 This app uses [yarn](https://github.com/yarnpkg/yarn) in favor of `npm`. The advantages include but might not be limited to:
 * Deterministic dependencies i.e. no more 'works on my machine' errors.
@@ -16,6 +19,7 @@ brew install watchman
 brew cask install react-native-debugger
 yarn global add react-native
 git clone https://github.com/1mgOfficial/doctor-react-native && cd doctor-react-native
+git checkout prototyping
 yarn install
 react-native run-ios
 react-native run-android
