@@ -20,8 +20,8 @@ export default async function sendMessage({ action, dispatch, getState }) {
     const response = await fetch(request);
     const json = await response.json();
     if (json.success) {
+      dispatch(actions.GO_BACK);
       const { conversation } = action.payload;
-      dispatch(actions.SHOW_LOCAL_ALERT(json.success));
       dispatch(actions.GET_MESSAGES(conversation));
     } else {
       const { error } = json;
