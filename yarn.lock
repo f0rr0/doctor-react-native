@@ -4420,6 +4420,19 @@ react-native-drawer-layout@^1.0.0, react-native-drawer-layout@^1.1.0:
     autobind-decorator "^1.3.2"
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-gifted-chat-1mg@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-chat-1mg/-/react-native-gifted-chat-1mg-0.0.12.tgz#43916f20d9c4d9275bfd7feef7707ab95adc13e1"
+  dependencies:
+    "@exponent/react-native-action-sheet" "git+https://github.com/FaridSafi/react-native-action-sheet.git"
+    md5 "^2.1.0"
+    moment "^2.13.0"
+    react-native-communications "^2.1.0"
+    react-native-dismiss-keyboard "^1.0.0"
+    react-native-invertible-scroll-view "^1.0.0"
+    react-native-parsed-text "^0.0.15"
+    shallowequal "^0.2.2"
+
 react-native-gifted-chat@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.0.10.tgz#4ff71c9869e174eba357d086e33b4baff7fea0c6"

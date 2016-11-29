@@ -20,7 +20,7 @@ import {
   Time,
   Message,
   InputToolbar
-} from 'react-native-gifted-chat';
+} from 'react-native-gifted-chat-1mg';
 import { connect } from 'react-redux';
 import actions from 'actions';
 import colors from 'colors';
