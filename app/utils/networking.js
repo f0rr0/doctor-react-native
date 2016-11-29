@@ -4,7 +4,7 @@
 
 export function generateUnauthenticatedPostRequest(url, data) {
   const body = new FormData();
-  for (var field in data) {
+  for (const field in data) {
     body.append(field, data[field]);
   }
   return new Request(url, {
@@ -21,7 +21,7 @@ export function generateUnauthenticatedPostRequest(url, data) {
 
 export function generatePostRequest(url, data, { phone_number, phone_access_token }) {
   const body = new FormData();
-  for (var field in data) {
+  for (const field in data) {
     body.append(field, data[field]);
   }
   return new Request(url, {
