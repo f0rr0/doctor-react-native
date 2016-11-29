@@ -35,5 +35,6 @@ export default {
   TOGGLE_MESSAGES_ERROR: createAction('TOGGLE_MESSAGES_ERROR')(),
   SET_MESSAGES: (messages) => createAction('SET_MESSAGES')({ messages }),
   TOGGLE_MESSAGES_LOADING_MORE: createAction('TOGGLE_MESSAGES_LOADING_MORE')(),
+  SEND_MESSAGE: (conversation, message) => createAction('SEND_MESSAGE')({ conversation, message }),
   APPEND_MESSAGES: (messages) => createAction('APPEND_MESSAGES')({ messages })
 };

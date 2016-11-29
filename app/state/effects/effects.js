@@ -21,6 +21,7 @@ import refreshConversations from 'refreshConversations';
 import loadMoreConversations from 'loadMoreConversations';
 import getMessages from 'getMessages';
 import loadMoreMessages from 'loadMoreMessages';
+import sendMessage from 'sendMessage';
 
 function genericErrorHandler({ action, error }) {
   console.log({error, action});
@@ -115,6 +116,11 @@ export default [
   {
     action: actions.LOAD_MORE_MESSAGES().type,
     effect: loadMoreMessages,
+    error: genericErrorHandler
+  },
+  {
+    action: actions.SEND_MESSAGE().type,
+    effect: sendMessage,
     error: genericErrorHandler
   }
 ];

@@ -151,10 +151,6 @@ const ErrorData = ({ onPress = () => {} }) => (
 
 @connect(({ messages, user }) => ({ messages, user }))
 export default class Messages extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   renderMessage = props =>
     <Message
       {...props}
@@ -230,6 +226,11 @@ export default class Messages extends PureComponent {
     }
   }
 
+  onSend = (message) => {
+    const { dispatch, params: conversation } = this.props;
+    dispatch(actions.SEND_MESSAGE(conversation, message[0].text));
+  }
+
   handleMarkSpam = () => {
     const { dispatch, params: { id } } = this.props;
     dispatch(actions.SHOW_MODAL_DIALOG('mark_spam', () => console.log(id)));
@@ -256,7 +257,7 @@ export default class Messages extends PureComponent {
             renderSend={this.renderSend}
             renderInputToolbar={this.renderInputToolbar(messages)}
             messages={data.map(this.mapWithContext(user, conversation))}
-            onSend={(messages = []) => console.log(messages)}
+            onSend={this.onSend}
             user={{ _id: 'doctor' }}
           />
         );

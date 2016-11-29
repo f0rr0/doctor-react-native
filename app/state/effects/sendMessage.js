@@ -10,12 +10,19 @@ import { generatePostRequest } from 'networking';
 export default async function sendMessage({ action, dispatch, getState }) {
   dispatch(actions.SHOW_MODAL_ACTIVITY('Sending...'));
   const { user } = getState();
-  const request = generatePostRequest('https://stagapi.1mgdoctors.com/api/doctor/add_conversation_message', action.payload, user);
+  const { conversation: { id: conversation_id }, message } = action.payload;
+  const sendPayload = {
+    conversation_id,
+    message
+  };
+  const request = generatePostRequest('https://stagapi.1mgdoctors.com/api/doctor/add_conversation_message', sendPayload, user);
   try {
     const response = await fetch(request);
     const json = await response.json();
     if (json.success) {
+      const { conversation } = action.payload;
       dispatch(actions.SHOW_LOCAL_ALERT(json.success));
+      dispatch(actions.GET_MESSAGES(conversation));
     } else {
       const { error } = json;
       dispatch(actions.SHOW_LOCAL_ALERT(error));
