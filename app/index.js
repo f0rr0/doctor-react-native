@@ -28,10 +28,7 @@ export default class doctorApp extends PureComponent {
     if (isLoading) {
       return null;
     }
-    const navigationContext = new NavigationContext({
-      router,
-      store
-    });
+    const navigationContext = new NavigationContext({ router, store });
     const { user: { loggedIn } } = store.getState();
     return (
       <Provider store={store}>
