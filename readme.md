@@ -1,7 +1,7 @@
-#### [Who's using React Native](https://facebook.github.io/react-native/showcase.html)
-We are in good company.
+### Who's using React Native
+We are in [good company](https://facebook.github.io/react-native/showcase.html).
 
-#### Package Manager
+### Package Manager
 This app uses [yarn](https://github.com/yarnpkg/yarn) in favor of `npm`. The advantages include but might not be limited to:
 * Deterministic dependencies i.e. no more 'works on my machine' errors.
 * Caching and offline support for already installed modules.
@@ -12,7 +12,7 @@ To install `yarn`:
 npm i -g yarn
 ```
 
-#### Development
+### Development
 ```
 brew update
 brew install watchman
@@ -25,19 +25,19 @@ react-native run-ios
 react-native run-android
 ```
 
-#### Troubleshooting
+### Troubleshooting
 * Make sure you're running the latest stable `node` and `npm`.
 * Make sure Xcode is installed along with required SDKs and emulator.
 * Make sure Android Studio is installed along with required SDKs and emulator.
 * [React Native Debugger](https://github.com/jhen0409/react-native-debugger)
 * [React Native](https://facebook.github.io/react-native/docs/troubleshooting.html)
 
-#### App State
+### App State
 This app uses `redux` for state management, `react-redux` for bindings, `redux-actions` for FSA compliant actions, `redux-effex` for async side effects and `redux-persist` for persisting state to `AsyncStorage`.
 
 ![Sample App State Visualized](./screenshots/ReduxAppState.png)
 
-#### Screenshots
+### Screenshots
 
 | Current       | RN Android | RN iOS |
 | ------------- | ---------- | ------ |
