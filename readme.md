@@ -1,3 +1,14 @@
+#### Package Manager
+This app uses [yarn](https://github.com/yarnpkg/yarn) in favor of `npm`. The advantages include but might not be limited to:
+* Deterministic dependencies i.e. no more 'works on my machine' errors.
+* Caching and offline support for already installed modules.
+* Faster installation due to efficient network utilization.
+
+To install `yarn`:
+```
+npm i -g yarn
+```
+
 #### Development
 ```
 brew update
@@ -9,6 +20,13 @@ yarn install
 react-native run-ios
 react-native run-android
 ```
+
+#### Troubleshooting
+* Make sure you're running the latest stable `node` and `npm`.
+* Make sure Xcode is installed along with required SDKs and emulator.
+* Make sure Android Studio is installed along with required SDKs and emulator.
+* [React Native Debugger](https://github.com/jhen0409/react-native-debugger)
+* [React Native](https://facebook.github.io/react-native/docs/troubleshooting.html)
 
 #### App State
 This app uses `redux` for state management, `react-redux` for bindings, `redux-actions` for FSA compliant actions, `redux-effex` for async side effects and `redux-persist` for persisting state to `AsyncStorage`.
