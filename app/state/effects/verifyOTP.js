@@ -18,6 +18,7 @@ export default async function verifyOTP({ action, dispatch, nextDispatchAsync, g
     const response = await fetch(request);
     const json = await response.json();
     if (json.success) {
+      dispatch(actions.GO_BACK);
       dispatch(actions.GO_TO_ROUTE('resetPassword', json.reset_token));
     } else {
       const { error } = json;
