@@ -38,6 +38,8 @@ When running the the app on real hardware, you might notice lags in animating be
 1. Shake the device to open the developer menu.
 2. Uncheck Dev mode.
 3. Check minify code.
+4. Uncheck hot reload.
+5. Uncheck remote debugging.
 4. Reload app bundle.
 5. Enjoy lag free animations.
 
