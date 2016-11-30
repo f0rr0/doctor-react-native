@@ -31,17 +31,21 @@ react-native run-android
 * Make sure Android Studio is installed along with required SDKs and emulator.
 * [React Native Debugger](https://github.com/jhen0409/react-native-debugger)
 * [React Native](https://facebook.github.io/react-native/docs/troubleshooting.html)
+* [Running on Device](https://facebook.github.io/react-native/docs/running-on-device.html)
 
 ### Performance
 When running the the app on real hardware, you might notice lags in animating between tabs or drops in frame rate elsewhere. This is because the app is running in `dev` mode and all production specific optimizations are turned off to facilitate faster code reloading if changes are made. To run the app in `production`:
 
 1. Shake the device to open the developer menu.
-2. Uncheck Dev mode.
+2. Uncheck dev mode.
 3. Check minify code.
 4. Uncheck hot reload.
-5. Uncheck remote debugging.
-4. Reload app bundle.
-5. Enjoy lag free animations.
+5. Uncheck live reload.
+6. Uncheck remote debugging.
+7. Reload app bundle.
+8. Enjoy lag free animations.
+
+__This app is tested on Android 4.2.1 Micromax A210 (2013) as baseline smartphone.__
 
 ### App State
 This app uses `redux` for state management, `react-redux` for bindings, `redux-actions` for FSA compliant actions, `redux-effex` for async side effects and `redux-persist` for persisting state to `AsyncStorage`.
