@@ -1,4 +1,7 @@
 #### Development
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/f0rr0/doctor-react-native.svg)](https://greenkeeper.io/)
+
 ```
 brew update
 brew install watchman
