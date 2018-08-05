@@ -11,31 +11,31 @@
     "@exponent/ex-navigation": "^2.1.0",
     "lodash-es": "^4.17.2",
     "moment": "^2.17.0",
-    "react": "15.3.2",
-    "react-native": "0.38.0",
-    "react-native-drawer-layout": "^1.1.0",
-    "react-native-gifted-chat": "^0.0.10",
+    "react": "16.4.2",
+    "react-native": "0.56.0",
+    "react-native-drawer-layout": "^2.0.0",
+    "react-native-gifted-chat": "^0.4.3",
     "react-native-gifted-chat-1mg": "0.0.12",
     "react-native-md-textinput-1mg": "^2.0.8",
-    "react-native-scrollable-tab-view": "^0.6.0",
-    "react-redux": "^4.4.6",
-    "redux-actions": "^0.13.0",
+    "react-native-scrollable-tab-view": "^0.8.0",
+    "react-redux": "^5.0.7",
+    "redux-actions": "^2.6.1",
     "redux-effex": "^1.1.2",
-    "redux-persist": "^4.0.0-beta1"
+    "redux-persist": "^5.10.0"
   },
   "jest": {
     "preset": "jest-react-native"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.0",
-    "babel-jest": "16.0.0",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "23.4.2",
     "babel-preset-react-native-stage-0": "^1.0.1",
-    "eslint": "^3.9.1",
+    "eslint": "^5.3.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-react": "^6.6.0",
-    "jest": "16.0.2",
-    "jest-react-native": "16.1.0",
+    "eslint-plugin-react": "^7.10.0",
+    "jest": "23.4.2",
+    "jest-react-native": "18.0.0",
     "react-native-debugger-open": "^0.3.1",
-    "react-test-renderer": "15.3.2"
+    "react-test-renderer": "16.4.2"
   }
 }
